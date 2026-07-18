@@ -156,7 +156,7 @@
             font-weight: 600;
         }
 
-        /* 오른쪽 열: 작업 철학 섹션 (좌우 균형 맞춤 완료) */
+        /* 오른쪽 열: 작업 철학 섹션 */
         .philosophy-side {
             background: #121215;
             padding: 40px;
@@ -290,7 +290,7 @@
         .project-card:hover .thumbnail-box::after { opacity: 1; }
         
         .project-details { padding: 18px; }
-        .project-details .meta-title { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 6px; }
+        .project-details .meta-title { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 6px; line-height: 1.4; }
         .project-details .meta-cat { font-size: 0.8rem; color: #86868b; }
 
         /* 3. Abilities 섹션 */
@@ -354,10 +354,10 @@
             <h1>ACUT MEDIA</h1>
         </div>
 
-        <!-- 1. 포트폴리오 메인 쇼릴/하이라이트 재생 영역 (도메인 통신 보안 셋업 완료) -->
+        <!-- 1. 포트폴리오 메인 쇼릴/하이라이트 재생 영역 -->
         <div class="highlight-section">
             <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/XfBlQdKH7Bk?rel=0&modestbranding=1&enablejsapi=1&origin=*" title="ACUT MEDIA Showcase" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/XfBlQdKH7Bk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
 
@@ -370,10 +370,10 @@
         <!-- 프로필 및 작업철학 통합 좌우 스튜디오 그리드 -->
         <div class="about-studio-grid">
             
-            <!-- 왼쪽 파트: 인포메이션 카드 (감독님 이미지 경로 반영) -->
+            <!-- 왼쪽 파트: 인포메이션 카드 -->
             <div class="profile-side">
                 <div class="profile-img-box">
-                    <img src="my-profile.jpg" alt="강명수 영상감독">
+                    <img src="my-profile.jpg" alt="강명수 영상감독" onerror="this.src='https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800'">
                 </div>
                 <h2>ACUT MEDIA | 영상감독 강명수</h2>
                 <blockquote>"영상 촬영과 편집, 그리고 사진을 촬영할 때 가장 행복합니다."</blockquote>
@@ -387,7 +387,7 @@
                 </table>
             </div>
 
-            <!-- 오른쪽 파트: 다이렉트 타이포그래피 작업 철학 박스 -->
+            <!-- 오른쪽 파트: 작업 철학 박스 -->
             <div class="philosophy-side">
                 <h3>🎯 작업 철학</h3>
                 <div class="subtitle">Perfect · Communication · Relationship</div>
@@ -429,39 +429,156 @@
             <div class="filter-wrapper">
                 <button class="filter-btn active" onclick="changeCategory('all')">전체보기</button>
                 <button class="filter-btn" onclick="changeCategory('interior')">인테리어</button>
-                <button class="filter-btn" onclick="changeCategory('mobility')">차량/모빌리티</button>
+                <button class="filter-btn" onclick="changeCategory('mobility')">모빌리티/아웃도어</button>
                 <button class="filter-btn" onclick="changeCategory('commercial')">기업/프로모션</button>
                 <button class="filter-btn" onclick="changeCategory('personal')">웨딩/행사/브이로그</button>
             </div>
         </div>
 
-        <!-- 영상 리스트 그리드 박스 -->
+        <!-- 영상 리스트 그리드 박스 (총 16개 라인업 정교 빌드) -->
         <div class="project-grid" id="projectGrid">
             
-            <!-- 카드 유닛 1 (하이라이트 연동 및 자동 썸네일 맵핑) -->
-            <div class="project-card" data-cat="all" data-video="XfBlQdKH7Bk">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/XfBlQdKH7Bk/maxresdefault.jpg');"></div>
+            <!-- 영상 1 -->
+            <div class="project-card" data-cat="interior" data-video="zyrSIGUzRjY">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/zyrSIGUzRjY/hqdefault.jpg');"></div>
                 <div class="project-details">
-                    <div class="meta-title">포트폴리오 하이라이트 영상</div>
-                    <div class="meta-cat">🎬 ACUT MEDIA 대표 쇼릴</div>
-                </div>
-            </div>
-
-            <!-- 카드 유닛 2 (인테리어 예시) -->
-            <div class="project-card" data-cat="interior" data-video="YOUR_VIDEO_ID_HERE">
-                <div class="thumbnail-box" style="background-image: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=500');"></div>
-                <div class="project-details">
-                    <div class="meta-title">2026년 화장실 시공비 완전정복 패키지</div>
+                    <div class="meta-title">인테리어 브랜드 영상 프로젝트</div>
                     <div class="meta-cat">🏠 인테리어 업체 유튜브 연출 및 편집</div>
                 </div>
             </div>
 
-            <!-- 카드 유닛 3 (모빌리티 예시) -->
-            <div class="project-card" data-cat="mobility" data-video="YOUR_VIDEO_ID_HERE">
-                <div class="thumbnail-box" style="background-image: url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=500');"></div>
+            <!-- 영상 2 -->
+            <div class="project-card" data-cat="mobility" data-video="tFQmDqat3lI">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/tFQmDqat3lI/hqdefault.jpg');"></div>
                 <div class="project-details">
-                    <div class="meta-title">루프킹 제작 런칭 PV5 전용 평탄화 패키지 홍보영상</div>
-                    <div class="meta-cat">🚙 신상 모빌리티 패키지 런칭 크레딧</div>
+                    <div class="meta-title">캠핑 용품 브랜드 크리에이티브 콘텐츠</div>
+                    <div class="meta-cat">⛺ 아웃도어 브랜드 유튜브 제작 크레딧</div>
+                </div>
+            </div>
+
+            <!-- 영상 3 -->
+            <div class="project-card" data-cat="interior" data-video="3ZJrEiRb7tg">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/3ZJrEiRb7tg/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">인테리어 전문 브랜드 채널 운영 콘텐츠</div>
+                    <div class="meta-cat">🏠 인테리어 업체 유튜브 빌드</div>
+                </div>
+            </div>
+
+            <!-- 영상 4 -->
+            <div class="project-card" data-cat="mobility" data-video="cOnqi70i8ck">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/cOnqi70i8ck/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">신차 하이엔드 차량 리뷰 트랙 연출</div>
+                    <div class="meta-cat">🚙 차량 리뷰 전문 브랜드 콘텐츠</div>
+                </div>
+            </div>
+
+            <!-- 영상 5 (숏츠 우회 임베딩 완료) -->
+            <div class="project-card" data-cat="mobility" data-video="_sWXknDVsug">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/_sWXknDVsug/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">포르쉐 인증 중고차 센터 모바일 광고 컷</div>
+                    <div class="meta-cat">⚡ 포르쉐 숏츠 브랜드 마케팅 영상</div>
+                </div>
+            </div>
+
+            <!-- 영상 6 -->
+            <div class="project-card" data-cat="commercial" data-video="o6pAwbUzaPs">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/o6pAwbUzaPs/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">기업 핵심 브랜딩 특화 프로모션 무비</div>
+                    <div class="meta-cat">🎤 고전환 크리에이티브 프로모션 영상</div>
+                </div>
+            </div>
+
+            <!-- 영상 7 -->
+            <div class="project-card" data-cat="interior" data-video="5bH-t5GRTZo">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/5bH-t5GRTZo/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">공간 다큐멘터리식 인테리어 마스터 시공 컷</div>
+                    <div class="meta-cat">🏠 감각적 무드의 하이엔드 인테리어 영상</div>
+                </div>
+            </div>
+
+            <!-- 영상 8 -->
+            <div class="project-card" data-cat="mobility" data-video="mDZ7e9cTTtQ">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/mDZ7e9cTTtQ/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">BYD ATTO3 전기 SUV 풀 패키지 시네마틱 리뷰</div>
+                    <div class="meta-cat">🚙 모빌리티 수입 차량 브랜드 유튜브 디렉팅</div>
+                </div>
+            </div>
+
+            <!-- 영상 9 -->
+            <div class="project-card" data-cat="commercial" data-video="iQ3CQPwjCPk">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/iQ3CQPwjCPk/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">로스터리 예능 - 감성 카페 브랜딩 스토리</div>
+                    <div class="meta-cat">🎤 브랜드 F&B 스페셜 기업 프로모션 연출</div>
+                </div>
+            </div>
+
+            <!-- 영상 10 -->
+            <div class="project-card" data-cat="commercial" data-video="0axRIYqYA9E">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/0axRIYqYA9E/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">신형 특장 차량 런칭 컴패니 프로모션</div>
+                    <div class="meta-cat">🎤 기업 신작 발표 런칭 광고 마스터링</div>
+                </div>
+            </div>
+
+            <!-- 영상 11 -->
+            <div class="project-card" data-cat="mobility" data-video="v3mSuJiY85U">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/v3mSuJiY85U/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">카니발 하이리무진 아웃도어 패키지 런칭 커머셜</div>
+                    <div class="meta-cat">🚙 하이엔드 밴 커스텀 기업 브랜드 프로모션</div>
+                </div>
+            </div>
+
+            <!-- 영상 12 -->
+            <div class="project-card" data-cat="personal" data-video="MlqJGq6ghxY">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/MlqJGq6ghxY/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">고카프(GOCAF) 국제 아웃도어 박람회 행사 스케치</div>
+                    <div class="meta-cat">📸 박람회 스틸 무드 스케치 시네마틱 가공</div>
+                </div>
+            </div>
+
+            <!-- 영상 13 -->
+            <div class="project-card" data-cat="interior" data-video="a2_kocP33Uk">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/a2_kocP33Uk/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">전원주택 건축 및 세미 세레머니 부동산 바이럴</div>
+                    <div class="meta-cat">🏠 프리미엄 하우징 부동산 바이럴 비주얼 마스터</div>
+                </div>
+            </div>
+
+            <!-- 영상 14 -->
+            <div class="project-card" data-cat="personal" data-video="H66wbpSgRKY">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/H66wbpSgRKY/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">하이엔드 감성 웨딩 영상 아카이빙 (1인 3캠 빌드)</div>
+                    <div class="meta-cat">👰 프리미엄 웨딩 시네마 크레딧</div>
+                </div>
+            </div>
+
+            <!-- 영상 15 -->
+            <div class="project-card" data-cat="personal" data-video="92hYhnv743c">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/92hYhnv743c/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">본식 세레머니 감성 리마인드 웨딩 (1인 2캠 빌드)</div>
+                    <div class="meta-cat">👰 웨딩 필름 종합 편집 및 색보정 패키징</div>
+                </div>
+            </div>
+
+            <!-- 영상 16 -->
+            <div class="project-card" data-cat="personal" data-video="eBeOc8rwFQs">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/eBeOc8rwFQs/hqdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">글로벌 이벤트 프로덕션 브랜드 공식 행사스케치 무비</div>
+                    <div class="meta-cat">📸 대형 스케일 기업 페스티벌 현장 스케치</div>
                 </div>
             </div>
 
@@ -531,7 +648,7 @@
         cards.forEach(c => {
             c.addEventListener('click', () => {
                 const id = c.getAttribute('data-video');
-                if(id && id !== 'YOUR_VIDEO_ID_HERE') {
+                if(id) {
                     iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1&origin=*`;
                     modal.style.display = 'flex';
                 }
