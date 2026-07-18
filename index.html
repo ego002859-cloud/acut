@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACUT MEDIA | 영상감독 강명수 포트폴리오</title>
+    <style>
+        /* 글로벌 스타일 (애플/토스 스타일의 미니멀리즘) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            letter-spacing: -0.3px;
+        }
+
+        body {
+            background-color: #0b0b0d;
+            color: #e5e5e7;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        /* 메인 와이드 컨테이너 */
+        .container {
+            max-width: 1100px;
+            margin: 60px auto;
+        }
+
+        /* 상단 미니멀 헤더 */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .brand-header .sub-logo {
+            font-size: 0.75rem;
+            letter-spacing: 5px;
+            color: #8f8f94;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .brand-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-top: 8px;
+        }
+
+        /* 1. 하이라이트 비디오 플레이어 공간 */
+        .highlight-section {
+            margin-bottom: 50px;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 비율 고정 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #000;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: 0;
+        }
+
+        /* 핵심 슬로건 탑 배너 */
+        .slogan-banner {
+            background: linear-gradient(90deg, #121217 0%, #1c1c24 100%);
+            padding: 24px 30px;
+            border-radius: 14px;
+            border-left: 4px solid #ff3366;
+            margin-bottom: 60px;
+            font-size: 1.05rem;
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .slogan-banner strong { color: #ff3366; }
+
+        /* 프로필 & 철학 1:1 완벽 레이아웃 */
+        .about-studio-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        /* 왼쪽 열: 비주얼 & 인포 프로필 카드 */
+        .profile-side {
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-img-box {
+            width: 100%;
+            height: 380px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            margin-bottom: 25px;
+        }
+        .profile-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .profile-img-box:hover img {
+            transform: scale(1.03);
+        }
+        
+        .profile-side h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+        .profile-side blockquote {
+            font-size: 0.95rem;
+            color: #a1a1a6;
+            border-left: 2px solid #ff3366;
+            padding-left: 12px;
+            margin-bottom: 25px;
+            font-style: normal;
+        }
+
+        /* 인포메이션 테이블 */
+        .meta-info-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-top: 1px solid #222;
+        }
+        .meta-info-table td {
+            padding: 12px 0;
+            border-bottom: 1px solid #1c1c1f;
+            font-size: 0.9rem;
+        }
+        .meta-info-table td.label {
+            width: 110px;
+            color: #86868b;
+            font-weight: 600;
+        }
+        .meta-info-table td.value {
+            color: #e5e5e7;
+        }
+        .skill-tag {
+            background: #1c1c1f;
+            border: 1px solid #333;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin-right: 6px;
+            color: #ff3366;
+            font-weight: 600;
+        }
+
+        /* 오른쪽 열: 작업 철학 섹션 */
+        .philosophy-side {
+            background: #121215;
+            padding: 40px;
+            border-radius: 18px;
+            border: 1px solid #1c1c1f;
+        }
+        .philosophy-side h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .philosophy-side .subtitle {
+            font-size: 0.85rem;
+            color: #ff3366;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+        }
+        
+        .philosophy-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+        .philosophy-item {
+            position: relative;
+            padding-left: 24px;
+        }
+        .philosophy-item::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 6px;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background-color: #ff3366;
+        }
+        .philosophy-item h4 {
+            font-size: 1.05rem;
+            color: #ffffff;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .philosophy-item p {
+            font-size: 0.9rem;
+            color: #98989d;
+            line-height: 1.5;
+        }
+
+        /* 2. Movie Project 섹션 */
+        .section-divider {
+            border-top: 1px solid #1c1c1f;
+            padding-top: 50px;
+            margin-bottom: 30px;
+        }
+        .gallery-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        
+        .filter-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0 35px 0;
+        }
+        .filter-btn {
+            background: #121215;
+            border: 1px solid #222;
+            color: #86868b;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+        .filter-btn:hover {
+            color: #fff;
+            border-color: #444;
+        }
+        .filter-btn.active {
+            background: #ffffff;
+            border-color: #ffffff;
+            color: #000000;
+        }
+
+        /* 갤러리 그리드 */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+        .project-card {
+            background: #121215;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #1c1c1f;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff3366;
+        }
+        .thumbnail-box {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background-size: cover;
+            background-position: center;
+            background-color: #1c1c1f;
+        }
+        .thumbnail-box::after {
+            content: "▶";
+            position: absolute;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 1.2rem; color: #fff;
+            background: rgba(255, 31, 85, 0.9);
+            width: 46px; height: 46px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.2s;
+            padding-left: 2px;
+        }
+        .project-card:hover .thumbnail-box::after { opacity: 1; }
+        
+        .project-details { padding: 18px; }
+        .project-details .meta-title { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 6px; }
+        .project-details .meta-cat { font-size: 0.8rem; color: #86868b; }
+
+        /* 3. Abilities 섹션 */
+        .abilities-box {
+            background: #121215;
+            border: 1px solid #1c1c1f;
+            border-radius: 16px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .ability-col h4 { font-size: 0.9rem; color: #86868b; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;}
+        .ability-list-wrapper { display: flex; flex-wrap: wrap; gap: 8px;}
+        .ability-pill {
+            background: #1c1c1f;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* 모달 시스템 */
+        .modal {
+            display: none;
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content { width: 92%; max-width: 900px; position: relative; }
+        .modal-close {
+            position: absolute; top: -45px; right: 0;
+            color: #fff; font-size: 2.5rem; cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            margin: 60px 0 30px 0;
+            font-size: 0.75rem;
+            color: #424245;
+        }
+
+        @media (max-width: 900px) {
+            .about-studio-grid { grid-template-columns: 1fr; gap: 40px; }
+            .profile-img-box { height: 320px; }
+            .abilities-box { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- 브랜드 미니멀 탑 헤더 -->
+        <div class="brand-header">
+            <div class="sub-logo">Acut Value Creator</div>
+            <h1>ACUT MEDIA</h1>
+        </div>
+
+        <!-- 1. [메인 153 에러 수정] 타이틀 아래 메인 와이드 스크린 영상 주소 교체 완료 -->
+        <div class="highlight-section">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/XfBlQdKH7Bk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- 슬로건 섹션 배너 -->
+        <div class="slogan-banner">
+            📌 기획부터 촬영·편집까지, 모든 과정을 <strong>브랜드 맞춤형</strong>으로 설계합니다. 
+            당신만의 스토리를 <strong>가장 설득력 있게 보여주는 영상</strong>을 만나보세요.
+        </div>
+
+        <!-- 프로필 및 작업철학 통합 좌우 스튜디오 그리드 -->
+        <div class="about-studio-grid">
+            
+            <!-- 왼쪽 파트: 인포메이션 카드 -->
+            <div class="profile-side">
+                <div class="profile-img-box">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600" alt="강명수 영상감독">
+                </div>
+                <h2>ACUT MEDIA | 영상감독 강명수</h2>
+                <blockquote>"영상 촬영과 편집, 그리고 사진을 촬영할 때 가장 행복합니다."</blockquote>
+                
+                <table class="meta-info-table">
+                    <tr><td class="label">NAME</td><td class="value">강명수</td></tr>
+                    <tr><td class="label">PHONE</td><td class="value">010-4014-1547</td></tr>
+                    <tr><td class="label">E-MAIL</td><td class="value">kangms9254@naver.com</td></tr>
+                    <tr><td class="label">RESIDENCE</td><td class="value">경기도 이천시</td></tr>
+                    <tr><td class="label">FIELD</td><td class="value"><span class="skill-tag">영상제작</span><span class="skill-tag">디자인</span><span class="skill-tag">유튜브</span></td></tr>
+                </table>
+            </div>
+
+            <!-- 오른쪽 파트: 다이렉트 타이포그래피 작업 철학 박스 -->
+            <div class="philosophy-side">
+                <h3>🎯 작업 철학</h3>
+                <div class="subtitle">Perfect · Communication · Relationship</div>
+                
+                <div class="philosophy-timeline">
+                    <div class="philosophy-item">
+                        <h4>완벽주의적 협업</h4>
+                        <p>한 번 프로젝트 기획 및 촬영 빌드를 시작하면 마음에 들 때까지 끝까지 완벽하게 함께 처리해 나갑니다.</p>
+                    </div>
+                    <div class="philosophy-item">
+                        <h4>브랜드 중심의 영상 기획</h4>
+                        <p>클라이언트 브랜드 고유의 가치를 고급스러운 무드로 가공하여 매출과 신뢰도로 직결되는 고효율 영상 솔루션을 구성합니다.</p>
+                    </div>
+                    <div class="philosophy-item">
+                        <h4>관계 중심의 커뮤니케이션</h4>
+                        <p>단순 일회성 납품 관계를 넘어 클라이언트와의 긴밀한 소통과 유연한 피드백 수용을 가장 최우선 가치로 둡니다.</p>
+                    </div>
+                    <div class="philosophy-item">
+                        <h4>풍부한 실무 현장 카테고리 기량</h4>
+                        <p>웨딩 세션 2년 / 부동산 홍보 바이럴 2년 / 차량 및 모빌리티 하이엔드 무비 연출 3년 등 카테고리를 넘나드는 강력한 제작 스펙트럼 보유.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 2. 작품 컬렉션 아카이브 섹션 -->
+        <div class="section-divider">
+            <div class="gallery-title">🔮 Movie Project</div>
+            
+            <div class="filter-wrapper">
+                <button class="filter-btn active" onclick="changeCategory('all')">전체보기</button>
+                <button class="filter-btn" onclick="changeCategory('interior')">인테리어</button>
+                <button class="filter-btn" onclick="changeCategory('mobility')">차량/모빌리티</button>
+                <button class="filter-btn" onclick="changeCategory('commercial')">기업/프로모션</button>
+                <button class="filter-btn" onclick="changeCategory('personal')">웨딩/행사/브이로그</button>
+            </div>
+        </div>
+
+        <!-- 영상 리스트 그리드 박스 -->
+        <div class="project-grid" id="projectGrid">
+            
+            <!-- 카드 유닛 1 (하이라이트 연동) -->
+            <div class="project-card" data-cat="all" data-video="XfBlQdKH7Bk">
+                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/XfBlQdKH7Bk/maxresdefault.jpg');"></div>
+                <div class="project-details">
+                    <div class="meta-title">포트폴리오 하이라이트 영상</div>
+                    <div class="meta-cat">🎬 ACUT MEDIA 대표 쇼릴</div>
+                </div>
+            </div>
+
+            <!-- 카드 유닛 2 (인테리어 예시) -->
+            <div class="project-card" data-cat="interior" data-video="YOUR_VIDEO_ID_HERE">
+                <div class="thumbnail-box" style="background-image: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=500');"></div>
+                <div class="project-details">
+                    <div class="meta-title">2026년 화장실 시공비 완전정복 패키지</div>
+                    <div class="meta-cat">🏠 인테리어 업체 유튜브 연출 및 편집</div>
+                </div>
+            </div>
+
+            <!-- 카드 유닛 3 (모빌리티 예시) -->
+            <div class="project-card" data-cat="mobility" data-video="YOUR_VIDEO_ID_HERE">
+                <div class="thumbnail-box" style="background-image: url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=500');"></div>
+                <div class="project-details">
+                    <div class="meta-title">루프킹 제작 런칭 PV5 전용 평탄화 패키지 홍보영상</div>
+                    <div class="meta-cat">🚙 신상 모빌리티 패키지 런칭 크레딧</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 3. 기술 스택 요약 섹션 -->
+        <div class="section-divider" style="margin-bottom: 25px;">
+            <div class="gallery-title" style="font-size: 1.3rem; margin-bottom: 15px;">📊 Core Abilities</div>
+        </div>
+        <div class="abilities-box">
+            <div class="ability-col">
+                <h4>Design Stack</h4>
+                <div class="ability-list-wrapper">
+                    <span class="ability-pill">Photoshop</span>
+                    <span class="ability-pill">Illustrator</span>
+                </div>
+            </div>
+            <div class="ability-col">
+                <h4>Video Edit Stack</h4>
+                <div class="ability-list-wrapper">
+                    <span class="ability-pill">Final Cut Pro</span>
+                    <span class="ability-pill">After Effects</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 하단 푸터 영역 -->
+        <footer>
+            <p>&copy; 2026 ACUT MEDIA. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- 극장식 팝업 플레이어 모달 프레임 -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <div class="video-container">
+                <iframe id="modalIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeCategory(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            btns.forEach(b => b.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            cards.forEach(c => {
+                const target = c.getAttribute('data-cat');
+                if (category === 'all' || target === category) {
+                    c.style.display = 'block';
+                } else {
+                    c.style.display = 'none';
+                }
+            });
+        }
+
+        const modal = document.getElementById('videoModal');
+        const iframe = document.getElementById('modalIframe');
+        const closeBtn = document.getElementById('modalClose');
+        const cards = document.querySelectorAll('.project-card');
+
+        cards.forEach(c => {
+            c.addEventListener('click', () => {
+                const id = c.getAttribute('data-video');
+                if(id && id !== 'YOUR_VIDEO_ID_HERE') {
+                    iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+                    modal.style.display = 'flex';
+                }
+            });
+        });
+
+        function shutdownModal() {
+            modal.style.display = 'none';
+            iframe.src = '';
+        }
+
+        closeBtn.addEventListener('click', shutdownModal);
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) shutdownModal();
+        });
+    </script>
+</body>
+</html>
