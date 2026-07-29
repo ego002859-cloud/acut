@@ -314,6 +314,164 @@
             font-weight: 600;
         }
 
+        /* 4. AI 채널 성장 시스템 섹션 */
+        .ai-tool-banner {
+            background: #121215;
+            border: 1px solid #1c1c1f;
+            border-radius: 18px;
+            padding: 44px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .ai-tool-banner::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 260px; height: 260px;
+            background: radial-gradient(circle, rgba(255,51,102,0.18) 0%, rgba(255,51,102,0) 70%);
+            pointer-events: none;
+        }
+        .ai-tool-text .eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: #ff3366;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .ai-tool-text h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+        .ai-tool-text p {
+            font-size: 0.9rem;
+            color: #a1a1a6;
+            line-height: 1.75;
+            margin-bottom: 24px;
+        }
+        .ai-feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 26px;
+        }
+        .ai-feature-list li {
+            position: relative;
+            padding-left: 22px;
+            font-size: 0.87rem;
+            color: #e5e5e7;
+            font-weight: 500;
+        }
+        .ai-feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0; top: 0;
+            color: #ff3366;
+            font-weight: 800;
+        }
+        .ai-tool-closing {
+            font-size: 0.92rem;
+            color: #fff;
+            font-weight: 700;
+            border-left: 3px solid #ff3366;
+            padding-left: 14px;
+        }
+
+        /* 오른쪽 - 툴 UI 미니 목업 */
+        .ai-tool-mockup {
+            background: #000000;
+            border: 1px solid #26262a;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+        }
+        .mockup-topbar {
+            padding: 16px 20px 4px 20px;
+            font-size: 0.62rem;
+            letter-spacing: 2.5px;
+            color: #8f8f94;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .mockup-heading {
+            padding: 0 20px 16px 20px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #fff;
+            border-bottom: 1px solid #1c1c1f;
+        }
+        .mockup-heading .hl { color: #ff3366; }
+        .mockup-tabs {
+            display: flex;
+            gap: 6px;
+            padding: 14px 20px;
+            flex-wrap: wrap;
+        }
+        .mockup-tab {
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: #86868b;
+            background: #121215;
+            border: 1px solid #1c1c1f;
+        }
+        .mockup-tab.active {
+            background: #ff3366;
+            color: #fff;
+            border-color: #ff3366;
+        }
+        .mockup-body {
+            padding: 4px 20px 22px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .mockup-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #121215;
+            border: 1px solid #1c1c1f;
+            border-radius: 8px;
+            padding: 12px 14px;
+        }
+        .mockup-row .label {
+            font-size: 0.7rem;
+            color: #86868b;
+            font-weight: 600;
+        }
+        .mockup-row .value {
+            font-size: 0.78rem;
+            color: #e5e5e7;
+            font-weight: 700;
+        }
+        .mockup-badge {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 0.66rem;
+            font-weight: 700;
+            color: #ff3366;
+            background: rgba(255,51,102,0.12);
+            border: 1px solid rgba(255,51,102,0.35);
+            padding: 6px 12px;
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        @media (max-width: 900px) {
+            .ai-tool-banner { grid-template-columns: 1fr; padding: 30px; }
+        }
+
         /* 모달 시스템 */
         .modal {
             display: none;
@@ -601,6 +759,49 @@
                 <div class="ability-list-wrapper">
                     <span class="ability-pill">Final Cut Pro</span>
                     <span class="ability-pill">After Effects</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. AI 채널 성장 전략 시스템 섹션 -->
+        <div class="section-divider" style="margin-bottom: 25px;">
+            <div class="gallery-title" style="font-size: 1.3rem; margin-bottom: 15px;">🤖 AI Growth System</div>
+        </div>
+
+        <div class="ai-tool-banner">
+            <div class="ai-tool-text">
+                <div class="eyebrow">Self-Developed Tool</div>
+                <h3>영상만 만드는 감독이 아닌,<br>채널 성장을 설계하는 파트너</h3>
+                <p>
+                    촬영·편집에서 끝내지 않습니다. YouTube Data API·Analytics API와 AI(Claude/Gemini)를 직접 연동해,
+                    채널 데이터를 자동으로 진단하고 성장 병목을 찾아 실행 가능한 대본과 로드맵까지 생성하는
+                    <strong style="color:#fff;">AI 채널 성장 전략 툴</strong>을 직접 기획하고 개발해 실제 채널 운영에 적용하고 있습니다.
+                </p>
+                <ul class="ai-feature-list">
+                    <li>YouTube Studio 데이터 자동 연동 진단</li>
+                    <li>구독자·조회수·CTR 등 6개 지표 벤치마크 분석</li>
+                    <li>병목 유형별 맞춤 대본 템플릿 자동 생성</li>
+                    <li>4주 단위 실행 로드맵 · 보고서 자동 산출</li>
+                </ul>
+                <div class="ai-tool-closing">감(感)이 아닌 데이터로 "왜 안 되는지"를 찾고, 다음 액션까지 제시합니다.</div>
+            </div>
+
+            <div class="ai-tool-mockup">
+                <div class="mockup-topbar">Channel Growth Diagnosis</div>
+                <div class="mockup-heading">YouTube 채널 성장 <span class="hl">진단</span> · 대본 생성</div>
+                <div class="mockup-tabs">
+                    <div class="mockup-tab active">1 데이터 입력</div>
+                    <div class="mockup-tab">2 진단 결과</div>
+                    <div class="mockup-tab">3 대본 생성</div>
+                    <div class="mockup-tab">4 보고서</div>
+                    <div class="mockup-tab">5 대본 리라이트</div>
+                </div>
+                <div class="mockup-body">
+                    <div class="mockup-row"><span class="label">현재 구독자</span><span class="value">11,253</span></div>
+                    <div class="mockup-row"><span class="label">최근 28일 구독 증가</span><span class="value">+133</span></div>
+                    <div class="mockup-row"><span class="label">데이터 연동 방식</span><span class="value">Apps Script 자동 연동</span></div>
+                    <div class="mockup-row"><span class="label">분석 엔진</span><span class="value">Claude / Gemini API</span></div>
+                    <span class="mockup-badge">● 직접 개발 · 실 채널 운영 적용 중</span>
                 </div>
             </div>
         </div>
