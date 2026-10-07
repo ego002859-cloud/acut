@@ -1,870 +1,399 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACUT MEDIA | 영상감독 강명수 포트폴리오</title>
-    <style>
-        /* 글로벌 스타일 (애플/토스 스타일의 미니멀리즘) */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            letter-spacing: -0.3px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>강명수 | 영상감독 · ACUT MEDIA</title>
+<meta name="description" content="보이는 영상을 만들고, 왜 안 보이는지까지 찾는 영상감독 강명수">
+<meta property="og:title" content="강명수 | 영상감독 · ACUT MEDIA">
+<meta property="og:description" content="조회수 1.7천 → 6.5만. 영상을 만들고, 왜 안 보이는지까지 찾습니다.">
+<meta property="og:image" content="https://ego002859-cloud.github.io/acut/img/hero_poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23ff3366'/><text x='32' y='44' font-size='32' font-weight='800' text-anchor='middle' fill='%23fff' font-family='sans-serif'>A</text></svg>">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* 레이아웃: 화면이 말하고 글은 한 줄. 섹션 = 제목 한 줄 + 영상/이미지/숫자 */
+:root{--bg:#0b0b0c;--bg2:#141416;--line:#232327;--txt:#f3f3f1;--mut:#8b8b93;--acc:#ff3366;--ok:#3ddc97;color-scheme:dark}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;letter-spacing:-.02em;line-height:1.5;word-break:keep-all;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+.wrap{width:min(1240px,100% - 40px);margin-inline:auto}
+@media(max-width:600px){.wrap{width:calc(100% - 32px)}}
+b.acc,.acc{color:var(--acc)}
+.num{font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
 
-        body {
-            background-color: #0b0b0d;
-            color: #e5e5e7;
-            line-height: 1.6;
-            padding: 0 20px;
-        }
+/* nav */
+nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;gap:24px;padding:16px 24px;transition:background .3s}
+nav.solid{background:rgba(11,11,12,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .logo{font-weight:800;letter-spacing:.2em;font-size:.8rem;margin-right:auto}
+nav .links{display:flex;gap:22px;font-size:.86rem;font-weight:600}
+nav .tel{font-size:.86rem;font-weight:700;padding:9px 16px;border-radius:999px;background:var(--txt);color:#000}
+@media(max-width:720px){nav .links{display:none}nav{padding:12px 16px}}
 
-        /* 메인 와이드 컨테이너 */
-        .container {
-            max-width: 1100px;
-            margin: 60px auto;
-        }
+/* hero */
+.hero{position:relative;height:min(100svh,900px);min-height:560px;display:flex;align-items:flex-end;overflow:hidden;background:#000 url(../img/hero_poster.jpg) center/cover}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,12,1) 0%,rgba(11,11,12,.55) 35%,rgba(11,11,12,0) 70%)}
+.hero .wrap{position:relative;z-index:2;padding-bottom:clamp(36px,7vh,80px)}
+.hero .eb{display:flex;align-items:center;gap:10px;margin-bottom:18px;font-size:.78rem;font-weight:700;letter-spacing:.14em;color:#e6e6ea}
+.hero .eb i{width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px #ff336640}
+.hero h1{font-size:clamp(2.1rem,6vw,5rem);font-weight:800;line-height:1.08;letter-spacing:-.045em;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.cta{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:700;font-size:.95rem;border:1px solid #ffffff40;background:#ffffff14;backdrop-filter:blur(8px);cursor:pointer;color:var(--txt)}
+.btn.primary{background:var(--acc);border-color:var(--acc);color:#fff}
+.proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:36px;background:#ffffff22;border-radius:14px;overflow:hidden;max-width:780px}
+.proof div{background:rgba(11,11,12,.72);backdrop-filter:blur(8px);padding:16px 18px}
+.proof b{display:block;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;letter-spacing:-.04em;line-height:1}
+.proof span{display:block;margin-top:6px;font-size:.78rem;color:#c4c4cb}
+@media(max-width:520px){.proof div{padding:12px}.proof span{font-size:.7rem}}
 
-        /* 상단 미니멀 헤더 */
-        .brand-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .brand-header .sub-logo {
-            font-size: 0.75rem;
-            letter-spacing: 5px;
-            color: #8f8f94;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        .brand-header h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-top: 8px;
-        }
+/* section */
+section{padding:clamp(72px,10vw,130px) 0}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.head h2{font-size:clamp(1.7rem,4vw,3rem);font-weight:800;line-height:1.12;letter-spacing:-.04em;text-wrap:balance}
+.head .k{font-size:.74rem;font-weight:700;letter-spacing:.2em;color:var(--mut);margin-bottom:12px}
 
-        /* 1. 하이라이트 비디오 플레이어 공간 */
-        .highlight-section {
-            margin-bottom: 50px;
-        }
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 비율 고정 */
-            height: 0;
-            overflow: hidden;
-            border-radius: 16px;
-            background: #000;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            border: 0;
-        }
+/* pain → fix */
+.pain{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media(max-width:860px){.pain{grid-template-columns:minmax(0,1fr)}}
+.pain div{border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.pain q{color:var(--mut);font-size:.95rem;quotes:none;text-decoration:line-through;text-decoration-color:#ff336670}
+.pain b{font-size:1.1rem;line-height:1.35}
+.pain strong{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.04em;color:var(--acc)}
+.pain strong small{display:block;font-size:.74rem;font-weight:600;color:var(--mut);letter-spacing:0}
 
-        /* 핵심 슬로건 탑 배너 */
-        .slogan-banner {
-            background: linear-gradient(90deg, #121217 0%, #1c1c24 100%);
-            padding: 24px 30px;
-            border-radius: 14px;
-            border-left: 4px solid #ff3366;
-            margin-bottom: 60px;
-            font-size: 1.05rem;
-            color: #ffffff;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-        .slogan-banner strong { color: #ff3366; }
+/* reel strip */
+.strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:28px}
+.strip figure{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:16/10;background:var(--bg2)}
+.strip video{width:100%;height:100%;object-fit:cover}
+.strip figcaption{position:absolute;left:8px;top:8px;padding:3px 8px;border-radius:6px;background:rgba(0,0,0,.6);font-size:.78rem;font-weight:700;text-shadow:0 1px 6px #000}
+@media(max-width:800px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}.strip figure:last-child{grid-column:1/-1;aspect-ratio:16/7}}
 
-        /* 프로필 & 철학 1:1 완벽 레이아웃 */
-        .about-studio-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 60px;
-            margin-bottom: 80px;
-            align-items: start;
-        }
+/* work */
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mut);font:inherit;font-size:.86rem;font-weight:600;cursor:pointer}
+.filters button.on{background:var(--txt);color:#000;border-color:var(--txt)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 16px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.grid{grid-template-columns:minmax(0,1fr)}}
+.vcard{cursor:pointer;min-width:0}
+.vcard.feat{grid-column:span 2}
+@media(max-width:560px){.vcard.feat{grid-column:auto}}
+.thumb{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:var(--bg2)}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.vcard:hover .thumb img{transform:scale(1.04)}
+.thumb .play{position:absolute;right:10px;bottom:10px;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.6);display:grid;place-items:center;font-size:.8rem}
+.thumb .badge{position:absolute;left:10px;top:10px;padding:6px 10px;border-radius:8px;background:var(--acc);color:#fff;font-weight:800;font-size:.86rem;letter-spacing:-.02em}
+.vcard h3{margin-top:10px;font-size:.98rem;font-weight:700;line-height:1.35}
+.vcard .role{margin-top:4px;font-size:.78rem;color:var(--mut)}
+.hidden{display:none!important}
 
-        /* 왼쪽 열: 비주얼 & 인포 프로필 카드 */
-        .profile-side {
-            display: flex;
-            flex-direction: column;
-        }
-        .profile-img-box {
-            width: 100%;
-            height: 380px;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            margin-bottom: 25px;
-            background-color: #121215;
-        }
-        .profile-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        .profile-img-box:hover img {
-            transform: scale(1.03);
-        }
-        
-        .profile-side h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 12px;
-        }
-        .profile-side blockquote {
-            font-size: 0.95rem;
-            color: #a1a1a6;
-            border-left: 2px solid #ff3366;
-            padding-left: 12px;
-            margin-bottom: 25px;
-            font-style: normal;
-        }
+/* result */
+.ba{display:grid;grid-template-columns:minmax(0,1fr) 56px minmax(0,1fr);gap:0;align-items:center}
+.ba figure{position:relative;border-radius:14px;overflow:hidden;background:var(--bg2)}
+.ba img{width:100%;height:auto}
+.ba .over{padding:14px 16px 16px;border-top:1px solid var(--line)}
+.ba .over small{font-size:.72rem;font-weight:700;letter-spacing:.16em;color:#c4c4cb}
+.ba .over b{display:block;font-size:clamp(1.6rem,4vw,3rem);font-weight:800;letter-spacing:-.04em;line-height:1.05}
+.ba .after .over b{color:var(--acc)}
+.ba .arrow{text-align:center;font-size:1.6rem;color:var(--acc);font-weight:800}
+@media(max-width:760px){.ba{grid-template-columns:minmax(0,1fr)}.ba .arrow{transform:rotate(90deg);padding:6px 0}}
+.why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+.why div{border:1px solid var(--line);border-radius:12px;padding:16px;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:10px}
+.why i{font-style:normal;flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:.85rem}
+.why .x i{background:#ffffff14;color:var(--mut)}.why .x{color:var(--mut);text-decoration:line-through;text-decoration-color:#ff336690}
+.why .o{border-color:var(--acc)}.why .o i{background:var(--acc);color:#fff}
+@media(max-width:700px){.why{grid-template-columns:minmax(0,1fr)}}
+.bars{margin-top:22px;display:grid;gap:10px;max-width:780px}
+.bar{display:grid;grid-template-columns:110px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:.84rem;color:var(--mut)}
+.bar i{display:block;height:14px;border-radius:7px;background:#3a3a40}
+.bar i.hot{background:var(--acc)}
+.bar b{color:var(--txt);text-align:right;font-weight:800}
+.cap{margin-top:10px;font-size:.78rem;color:var(--mut)}
 
-        /* 인포메이션 테이블 */
-        .meta-info-table {
-            width: 100%;
-            border-collapse: collapse;
-            border-top: 1px solid #222;
-        }
-        .meta-info-table td {
-            padding: 12px 0;
-            border-bottom: 1px solid #1c1c1f;
-            font-size: 0.9rem;
-        }
-        .meta-info-table td.label {
-            width: 110px;
-            color: #86868b;
-            font-weight: 600;
-        }
-        .meta-info-table td.value {
-            color: #e5e5e7;
-        }
-        .skill-tag {
-            background: #1c1c1f;
-            border: 1px solid #333;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            margin-right: 6px;
-            color: #ff3366;
-            font-weight: 600;
-        }
 
-        /* 오른쪽 열: 작업 철학 섹션 */
-        .philosophy-side {
-            background: #121215;
-            padding: 40px;
-            border-radius: 18px;
-            border: 1px solid #1c1c1f;
-        }
-        .philosophy-side h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .philosophy-side .subtitle {
-            font-size: 0.85rem;
-            color: #ff3366;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 35px;
-            text-transform: uppercase;
-        }
-        
-        .philosophy-timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-        }
-        .philosophy-item {
-            position: relative;
-            padding-left: 24px;
-        }
-        .philosophy-item::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 6px;
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background-color: #ff3366;
-        }
-        .philosophy-item h4 {
-            font-size: 1.05rem;
-            color: #ffffff;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-        .philosophy-item p {
-            font-size: 0.9rem;
-            color: #98989d;
-            line-height: 1.5;
-        }
+/* solo */
+.solo{border:1px solid var(--acc);border-radius:16px;padding:22px;margin-bottom:22px;background:linear-gradient(160deg,#ff336614,transparent 55%)}
+.solo .flowline{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-weight:700;font-size:.95rem}
+.solo .flowline em{font-style:normal;color:var(--acc)}
+.solo .flowline .tag{margin-left:auto;padding:6px 12px;border-radius:999px;background:var(--acc);color:#fff;font-size:.82rem}
+.solo .plus{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.solo .plus div{border-top:1px solid var(--line);padding-top:14px}
+.solo .plus b{display:block;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;letter-spacing:-.04em}
+.solo .plus span{font-size:.84rem;color:var(--mut)}
+@media(max-width:520px){.solo .plus{grid-template-columns:minmax(0,1fr)}.solo .flowline .tag{margin-left:0}}
 
-        /* 2. Movie Project 섹션 */
-        .section-divider {
-            border-top: 1px solid #1c1c1f;
-            padding-top: 50px;
-            margin-bottom: 30px;
-        }
-        .gallery-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #fff;
-        }
-        
-        .filter-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 20px 0 35px 0;
-        }
-        .filter-btn {
-            background: #121215;
-            border: 1px solid #222;
-            color: #86868b;
-            padding: 8px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.25s ease;
-        }
-        .filter-btn:hover {
-            color: #fff;
-            border-color: #444;
-        }
-        .filter-btn.active {
-            background: #ffffff;
-            border-color: #ffffff;
-            color: #000000;
-        }
+/* service */
+.svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media(max-width:900px){.svc{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.svc{grid-template-columns:minmax(0,1fr)}}
+.svc div{border:1px solid var(--line);border-radius:14px;padding:20px 18px;min-height:150px;display:flex;flex-direction:column;gap:10px}
+.svc div.hot{border-color:var(--acc);background:linear-gradient(160deg,#ff336618,transparent 60%)}
+.svc .ico{font-size:1.6rem}
+.svc b{font-size:1.05rem}
+.svc span{font-size:.84rem;color:var(--mut);margin-top:auto}
+.steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:34px;position:relative}
+.steps::before{content:'';position:absolute;left:8%;right:8%;top:17px;height:2px;background:var(--line)}
+.steps div{position:relative;text-align:center;font-size:.84rem;font-weight:700}
+.steps i{display:grid;place-items:center;width:36px;height:36px;margin:0 auto 8px;border-radius:50%;background:var(--bg2);border:2px solid var(--line);font-style:normal;font-size:.8rem;color:var(--mut)}
+.steps .chk i{border-color:var(--acc);background:var(--acc);color:#fff}
+.terms{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.terms span{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.84rem;font-weight:600}
+@media(max-width:520px){.steps{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:18px}.steps::before{display:none}}
 
-        /* 갤러리 그리드 구조 */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 24px;
-            margin-bottom: 60px;
-        }
-        .project-card {
-            background: #121215;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid #1c1c1f;
-            cursor: pointer;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: #ff3366;
-        }
-        .thumbnail-box {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            background-size: cover;
-            background-position: center;
-            background-color: #1c1c1f;
-        }
-        .thumbnail-box::after {
-            content: "▶";
-            position: absolute;
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: 1.2rem; color: #fff;
-            background: rgba(255, 31, 85, 0.9);
-            width: 46px; height: 46px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.2s;
-            padding-left: 2px;
-        }
-        .project-card:hover .thumbnail-box::after { opacity: 1; }
-        
-        .project-details { padding: 18px; }
-        .project-details .meta-title { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 6px; line-height: 1.4; }
-        .project-details .meta-cat { font-size: 0.8rem; color: #86868b; }
+/* person */
+.person{display:grid;grid-template-columns:300px minmax(0,1fr);gap:40px;align-items:center}
+.person img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:18px}
+.path{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:18px}
+.path span{border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:.9rem;font-weight:700}
+.path span small{display:block;font-size:.72rem;color:var(--mut);font-weight:600}
+.path span.now{border-color:var(--acc)}
+.path em{font-style:normal;color:var(--acc);font-weight:800}
+@media(max-width:760px){.person{grid-template-columns:minmax(0,1fr)}.person img{max-width:240px}}
 
-        /* 3. Abilities 섹션 */
-        .abilities-box {
-            background: #121215;
-            border: 1px solid #1c1c1f;
-            border-radius: 16px;
-            padding: 30px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-        .ability-col h4 { font-size: 0.9rem; color: #86868b; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;}
-        .ability-list-wrapper { display: flex; flex-wrap: wrap; gap: 8px;}
-        .ability-pill {
-            background: #1c1c1f;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: #fff;
-            font-weight: 600;
-        }
+/* contact */
+.contact{text-align:center}
+.contact h2{font-size:clamp(1.9rem,5vw,3.6rem);font-weight:800;letter-spacing:-.045em;line-height:1.12;text-wrap:balance}
+.contact .cta{justify-content:center;margin-top:30px}
+.contact .tel-big{display:block;margin-top:26px;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:800;letter-spacing:-.02em}
+.contact .mail{margin-top:6px;color:var(--mut)}
+.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:760px;margin:30px auto 0;text-align:left}
+.flow div{border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-weight:700;font-size:.92rem}
+.flow i{display:block;font-style:normal;color:var(--acc);font-size:.74rem;letter-spacing:.14em;margin-bottom:4px}
+@media(max-width:600px){.flow{grid-template-columns:minmax(0,1fr)}}
+.free{display:inline-block;margin-top:18px;padding:6px 14px;border-radius:999px;background:#ff336620;color:var(--acc);font-weight:700;font-size:.86rem}
+footer{padding:30px 0 40px;text-align:center;font-size:.76rem;color:#6b6b72}
 
-        /* 4. AI 채널 성장 시스템 섹션 */
-        .ai-tool-banner {
-            background: #121215;
-            border: 1px solid #1c1c1f;
-            border-radius: 18px;
-            padding: 44px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: center;
-            margin-bottom: 60px;
-            position: relative;
-            overflow: hidden;
-        }
-        .ai-tool-banner::before {
-            content: '';
-            position: absolute;
-            top: -80px; right: -80px;
-            width: 260px; height: 260px;
-            background: radial-gradient(circle, rgba(255,51,102,0.18) 0%, rgba(255,51,102,0) 70%);
-            pointer-events: none;
-        }
-        .ai-tool-text .eyebrow {
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            color: #ff3366;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-        .ai-tool-text h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 16px;
-            line-height: 1.4;
-        }
-        .ai-tool-text p {
-            font-size: 0.9rem;
-            color: #a1a1a6;
-            line-height: 1.75;
-            margin-bottom: 24px;
-        }
-        .ai-feature-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 26px;
-        }
-        .ai-feature-list li {
-            position: relative;
-            padding-left: 22px;
-            font-size: 0.87rem;
-            color: #e5e5e7;
-            font-weight: 500;
-        }
-        .ai-feature-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0; top: 0;
-            color: #ff3366;
-            font-weight: 800;
-        }
-        .ai-tool-closing {
-            font-size: 0.92rem;
-            color: #fff;
-            font-weight: 700;
-            border-left: 3px solid #ff3366;
-            padding-left: 14px;
-        }
+/* mobile bar */
+.mbar{display:none}
+@media(max-width:720px){.mbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(11,11,12,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .3s}
+.mbar.on{transform:none}.mbar a{min-height:46px;display:grid;place-items:center;border-radius:999px;font-weight:700;border:1px solid #ffffff40}.mbar a:first-child{background:var(--acc);border-color:var(--acc)}footer{padding-bottom:96px}}
 
-        /* 오른쪽 - 툴 UI 미니 목업 */
-        .ai-tool-mockup {
-            background: #000000;
-            border: 1px solid #26262a;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
-        }
-        .mockup-topbar {
-            padding: 16px 20px 4px 20px;
-            font-size: 0.62rem;
-            letter-spacing: 2.5px;
-            color: #8f8f94;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-        .mockup-heading {
-            padding: 0 20px 16px 20px;
-            font-size: 1.05rem;
-            font-weight: 800;
-            color: #fff;
-            border-bottom: 1px solid #1c1c1f;
-        }
-        .mockup-heading .hl { color: #ff3366; }
-        .mockup-tabs {
-            display: flex;
-            gap: 6px;
-            padding: 14px 20px;
-            flex-wrap: wrap;
-        }
-        .mockup-tab {
-            font-size: 0.68rem;
-            font-weight: 700;
-            padding: 8px 12px;
-            border-radius: 8px;
-            color: #86868b;
-            background: #121215;
-            border: 1px solid #1c1c1f;
-        }
-        .mockup-tab.active {
-            background: #ff3366;
-            color: #fff;
-            border-color: #ff3366;
-        }
-        .mockup-body {
-            padding: 4px 20px 22px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .mockup-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #121215;
-            border: 1px solid #1c1c1f;
-            border-radius: 8px;
-            padding: 12px 14px;
-        }
-        .mockup-row .label {
-            font-size: 0.7rem;
-            color: #86868b;
-            font-weight: 600;
-        }
-        .mockup-row .value {
-            font-size: 0.78rem;
-            color: #e5e5e7;
-            font-weight: 700;
-        }
-        .mockup-badge {
-            display: inline-block;
-            margin-top: 6px;
-            font-size: 0.66rem;
-            font-weight: 700;
-            color: #ff3366;
-            background: rgba(255,51,102,0.12);
-            border: 1px solid rgba(255,51,102,0.35);
-            padding: 6px 12px;
-            border-radius: 20px;
-            width: fit-content;
-        }
-
-        @media (max-width: 900px) {
-            .ai-tool-banner { grid-template-columns: 1fr; padding: 30px; }
-        }
-
-        /* 모달 시스템 */
-        .modal {
-            display: none;
-            position: fixed;
-            top:0; left:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content { width: 92%; max-width: 900px; position: relative; }
-        .modal-close {
-            position: absolute; top: -45px; right: 0;
-            color: #fff; font-size: 2.5rem; cursor: pointer;
-        }
-
-        footer {
-            text-align: center;
-            margin: 60px 0 30px 0;
-            font-size: 0.75rem;
-            color: #424245;
-        }
-
-        @media (max-width: 900px) {
-            .about-studio-grid { grid-template-columns: 1fr; gap: 40px; }
-            .profile-img-box { height: 320px; }
-            .abilities-box { grid-template-columns: 1fr; }
-        }
-    </style>
+/* modal */
+.modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.94);place-items:center;padding:20px}
+.modal.on{display:grid}
+.modal .box{width:min(1100px,100%);aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden}
+.modal iframe,.modal video{width:100%;height:100%;border:0}
+.modal .x{position:absolute;top:14px;right:16px;width:44px;height:44px;border:0;background:none;color:#fff;font-size:2rem;cursor:pointer}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.vcard:hover .thumb img{transform:none}}
+</style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <!-- 브랜드 미니멀 탑 헤더 -->
-        <div class="brand-header">
-            <div class="sub-logo">Acut Value Creator</div>
-            <h1>ACUT MEDIA</h1>
-        </div>
+<nav id="nav">
+  <a class="logo" href="#top">ACUT MEDIA</a>
+  <div class="links"><a href="#pain">문제</a><a href="#work">작업</a><a href="#result">결과</a><a href="#service">맡기기</a></div>
+  <a class="tel" href="#contact">문의</a>
+</nav>
 
-        <!-- 1. 포트폴리오 메인 쇼릴/하이라이트 재생 영역 -->
-        <div class="highlight-section">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/XfBlQdKH7Bk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <!-- 슬로건 섹션 배너 -->
-        <div class="slogan-banner">
-            📌 기획부터 촬영·편집까지, 모든 과정을 <strong>브랜드 맞춤형</strong>으로 설계합니다. 
-            당신만의 스토리를 <strong>가장 설득력 있게 보여주는 영상</strong>을 만나보세요.
-        </div>
-
-        <!-- 프로필 및 작업철학 통합 좌우 스튜디오 그리드 -->
-        <div class="about-studio-grid">
-            
-            <!-- 왼쪽 파트: 인포메이션 카드 -->
-            <div class="profile-side">
-                <div class="profile-img-box">
-                    <img src="my-profile.jpg" alt="강명수 영상감독" onerror="this.src='https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800'">
-                </div>
-                <h2>ACUT MEDIA | 영상감독 강명수</h2>
-                <blockquote>"영상 촬영과 편집, 그리고 사진을 촬영할 때 가장 행복합니다."</blockquote>
-                
-                <table class="meta-info-table">
-                    <tr><td class="label">NAME</td><td class="value">강명수</td></tr>
-                    <tr><td class="label">PHONE</td><td class="value">010-4014-1547</td></tr>
-                    <tr><td class="label">E-MAIL</td><td class="value">kangms9254@naver.com</td></tr>
-                    <tr><td class="label">RESIDENCE</td><td class="value">경기도 이천시</td></tr>
-                    <tr><td class="label">FIELD</td><td class="value"><span class="skill-tag">영상제작</span><span class="skill-tag">디자인</span><span class="skill-tag">유튜브</span></td></tr>
-                </table>
-            </div>
-
-            <!-- 오른쪽 파트: 작업 철학 박스 -->
-            <div class="philosophy-side">
-                <h3>🎯 작업 철학</h3>
-                <div class="subtitle">Perfect · Communication · Relationship</div>
-                
-                <div class="philosophy-timeline">
-                    <div class="philosophy-item">
-                        <h4>완벽주의적 협업</h4>
-                        <p>한 번 프로젝트 기획 및 촬영 빌드를 시작하면 마음에 들 때까지 끝까지 완벽하게 함께 처리해 나갑니다.</p>
-                    </div>
-                    <div class="philosophy-item">
-                        <h4>브랜드 중심의 영상 기획</h4>
-                        <p>클라이언트 브랜드 고유의 가치를 고급스러운 무드로 가공하여 매출과 신뢰도로 직결되는 고효율 영상 솔루션을 구성합니다.</p>
-                    </div>
-                    <div class="philosophy-item">
-                        <h4>관계 중심의 커뮤니케이션</h4>
-                        <p>단순 일회성 납품 관계를 넘어 클라이언트와의 긴밀한 소통과 유연한 피드백 수용을 가장 최우선 가치로 둡니다.</p>
-                    </div>
-                    <div class="philosophy-item">
-                        <h4>풍부한 실무 현장 카테고리 기량</h4>
-                        <p>웨딩 세션 2년 / 부동산 홍보 바이럴 2년 / 차량 및 모빌리티 하이엔드 무비 연출 3년 등 카테고리를 넘나드는 강력한 제작 스펙트럼 보유.</p>
-                    </div>
-                    <div class="philosophy-item">
-                        <h4>최적의 플랫폼 규격 및 메타 최적화</h4>
-                        <p>단순 제작을 넘어 유튜브 알고리즘 트렌드, 고전환율 클릭 유도형 썸네일 톤앤매너, 숏폼 확장 레이아웃까지 데이터 기반으로 치밀하게 설계합니다.</p>
-                    </div>
-                    <div class="philosophy-item">
-                        <h4>기획부터 마스터링까지 원스톱 프로덕션</h4>
-                        <p>외주 분산으로 인한 톤 분열 없이, 1인 디렉팅의 강력한 기획력으로 프리 프로덕션부터 최종 색보정 팩 가공까지 흐트러짐 없는 퀄리티를 보장합니다.</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- 2. 작품 컬렉션 아카이브 섹션 -->
-        <div class="section-divider">
-            <div class="gallery-title">🔮 Movie Project</div>
-            
-            <div class="filter-wrapper">
-                <button class="filter-btn active" onclick="changeCategory('all')">전체보기</button>
-                <button class="filter-btn" onclick="changeCategory('interior')">인테리어</button>
-                <button class="filter-btn" onclick="changeCategory('mobility')">모빌리티/아웃도어</button>
-                <button class="filter-btn" onclick="changeCategory('commercial')">기업/프로모션</button>
-                <button class="filter-btn" onclick="changeCategory('personal')">웨딩/행사/브이로그</button>
-            </div>
-        </div>
-
-        <!-- 영상 리스트 그리드 박스 (총 16개 라인업 정교 빌드) -->
-        <div class="project-grid" id="projectGrid">
-            
-            <!-- 영상 1 -->
-            <div class="project-card" data-cat="interior" data-video="zyrSIGUzRjY">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/zyrSIGUzRjY/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">인테리어 브랜드 영상 프로젝트</div>
-                    <div class="meta-cat">🏠 인테리어 업체 유튜브 연출 및 편집</div>
-                </div>
-            </div>
-
-            <!-- 영상 2 -->
-            <div class="project-card" data-cat="mobility" data-video="tFQmDqat3lI">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/tFQmDqat3lI/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">캠핑 용품 브랜드 크리에이티브 콘텐츠</div>
-                    <div class="meta-cat">⛺ 아웃도어 브랜드 유튜브 제작 크레딧</div>
-                </div>
-            </div>
-
-            <!-- 영상 3 -->
-            <div class="project-card" data-cat="interior" data-video="3ZJrEiRb7tg">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/3ZJrEiRb7tg/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">인테리어 전문 브랜드 채널 운영 콘텐츠</div>
-                    <div class="meta-cat">🏠 인테리어 업체 유튜브 빌드</div>
-                </div>
-            </div>
-
-            <!-- 영상 4 -->
-            <div class="project-card" data-cat="mobility" data-video="cOnqi70i8ck">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/cOnqi70i8ck/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">신차 하이엔드 차량 리뷰 트랙 연출</div>
-                    <div class="meta-cat">🚙 차량 리뷰 전문 브랜드 콘텐츠</div>
-                </div>
-            </div>
-
-            <!-- 영상 5 (숏츠 우회 임베딩 완료) -->
-            <div class="project-card" data-cat="mobility" data-video="_sWXknDVsug">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/_sWXknDVsug/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">포르쉐 인증 중고차 센터 모바일 광고 컷</div>
-                    <div class="meta-cat">⚡ 포르쉐 숏츠 브랜드 마케팅 영상</div>
-                </div>
-            </div>
-
-            <!-- 영상 6 -->
-            <div class="project-card" data-cat="commercial" data-video="o6pAwbUzaPs">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/o6pAwbUzaPs/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">기업 핵심 브랜딩 특화 프로모션 무비</div>
-                    <div class="meta-cat">🎤 고전환 크리에이티브 프로모션 영상</div>
-                </div>
-            </div>
-
-            <!-- 영상 7 -->
-            <div class="project-card" data-cat="interior" data-video="5bH-t5GRTZo">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/5bH-t5GRTZo/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">공간 다큐멘터리식 인테리어 마스터 시공 컷</div>
-                    <div class="meta-cat">🏠 감각적 무드의 하이엔드 인테리어 영상</div>
-                </div>
-            </div>
-
-            <!-- 영상 8 -->
-            <div class="project-card" data-cat="mobility" data-video="mDZ7e9cTTtQ">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/mDZ7e9cTTtQ/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">BYD ATTO3 전기 SUV 풀 패키지 시네마틱 리뷰</div>
-                    <div class="meta-cat">🚙 모빌리티 수입 차량 브랜드 유튜브 디렉팅</div>
-                </div>
-            </div>
-
-            <!-- 영상 9 -->
-            <div class="project-card" data-cat="commercial" data-video="iQ3CQPwjCPk">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/iQ3CQPwjCPk/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">로스터리 예능 - 감성 카페 브랜딩 스토리</div>
-                    <div class="meta-cat">🎤 브랜드 F&B 스페셜 기업 프로모션 연출</div>
-                </div>
-            </div>
-
-            <!-- 영상 10 -->
-            <div class="project-card" data-cat="commercial" data-video="0axRIYqYA9E">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/0axRIYqYA9E/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">신형 특장 차량 런칭 컴패니 프로모션</div>
-                    <div class="meta-cat">🎤 기업 신작 발표 런칭 광고 마스터링</div>
-                </div>
-            </div>
-
-            <!-- 영상 11 -->
-            <div class="project-card" data-cat="mobility" data-video="v3mSuJiY85U">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/v3mSuJiY85U/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">카니발 하이리무진 아웃도어 패키지 런칭 커머셜</div>
-                    <div class="meta-cat">🚙 하이엔드 밴 커스텀 기업 브랜드 프로모션</div>
-                </div>
-            </div>
-
-            <!-- 영상 12 -->
-            <div class="project-card" data-cat="personal" data-video="MlqJGq6ghxY">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/MlqJGq6ghxY/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">고카프(GOCAF) 국제 아웃도어 박람회 행사 스케치</div>
-                    <div class="meta-cat">📸 박람회 스틸 무드 스케치 시네마틱 가공</div>
-                </div>
-            </div>
-
-            <!-- 영상 13 -->
-            <div class="project-card" data-cat="interior" data-video="a2_kocP33Uk">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/a2_kocP33Uk/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">전원주택 건축 및 세미 세레머니 부동산 바이럴</div>
-                    <div class="meta-cat">🏠 프리미엄 하우징 부동산 바이럴 비주얼 마스터</div>
-                </div>
-            </div>
-
-            <!-- 영상 14 -->
-            <div class="project-card" data-cat="personal" data-video="H66wbpSgRKY">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/H66wbpSgRKY/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">하이엔드 감성 웨딩 영상 아카이빙 (1인 3캠 빌드)</div>
-                    <div class="meta-cat">👰 프리미엄 웨딩 시네마 크레딧</div>
-                </div>
-            </div>
-
-            <!-- 영상 15 -->
-            <div class="project-card" data-cat="personal" data-video="92hYhnv743c">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/92hYhnv743c/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">본식 세레머니 감성 리마인드 웨딩 (1인 2캠 빌드)</div>
-                    <div class="meta-cat">👰 웨딩 필름 종합 편집 및 색보정 패키징</div>
-                </div>
-            </div>
-
-            <!-- 영상 16 -->
-            <div class="project-card" data-cat="personal" data-video="eBeOc8rwFQs">
-                <div class="thumbnail-box" style="background-image: url('https://img.youtube.com/vi/eBeOc8rwFQs/hqdefault.jpg');"></div>
-                <div class="project-details">
-                    <div class="meta-title">글로벌 이벤트 프로덕션 브랜드 공식 행사스케치 무비</div>
-                    <div class="meta-cat">📸 대형 스케일 기업 페스티벌 현장 스케치</div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- 3. 기술 스택 요약 섹션 -->
-        <div class="section-divider" style="margin-bottom: 25px;">
-            <div class="gallery-title" style="font-size: 1.3rem; margin-bottom: 15px;">📊 Core Abilities</div>
-        </div>
-        <div class="abilities-box">
-            <div class="ability-col">
-                <h4>Design Stack</h4>
-                <div class="ability-list-wrapper">
-                    <span class="ability-pill">Photoshop</span>
-                    <span class="ability-pill">Illustrator</span>
-                </div>
-            </div>
-            <div class="ability-col">
-                <h4>Video Edit Stack</h4>
-                <div class="ability-list-wrapper">
-                    <span class="ability-pill">Final Cut Pro</span>
-                    <span class="ability-pill">After Effects</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 4. AI 채널 성장 전략 시스템 섹션 -->
-        <div class="section-divider" style="margin-bottom: 25px;">
-            <div class="gallery-title" style="font-size: 1.3rem; margin-bottom: 15px;">🤖 AI Growth System</div>
-        </div>
-
-        <div class="ai-tool-banner">
-            <div class="ai-tool-text">
-                <div class="eyebrow">Self-Developed Tool</div>
-                <h3>영상만 만드는 감독이 아닌,<br>채널 성장을 설계하는 파트너</h3>
-                <p>
-                    촬영·편집에서 끝내지 않습니다. YouTube Data API·Analytics API와 AI(Claude/Gemini)를 직접 연동해,
-                    채널 데이터를 자동으로 진단하고 성장 병목을 찾아 실행 가능한 대본과 로드맵까지 생성하는
-                    <strong style="color:#fff;">AI 채널 성장 전략 툴</strong>을 직접 기획하고 개발해 실제 채널 운영에 적용하고 있습니다.
-                </p>
-                <ul class="ai-feature-list">
-                    <li>YouTube Studio 데이터 자동 연동 진단</li>
-                    <li>구독자·조회수·CTR 등 6개 지표 벤치마크 분석</li>
-                    <li>병목 유형별 맞춤 대본 템플릿 자동 생성</li>
-                    <li>4주 단위 실행 로드맵 · 보고서 자동 산출</li>
-                </ul>
-                <div class="ai-tool-closing">감(感)이 아닌 데이터로 "왜 안 되는지"를 찾고, 다음 액션까지 제시합니다.</div>
-            </div>
-
-            <div class="ai-tool-mockup">
-                <div class="mockup-topbar">Channel Growth Diagnosis</div>
-                <div class="mockup-heading">YouTube 채널 성장 <span class="hl">진단</span> · 대본 생성</div>
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active">1 데이터 입력</div>
-                    <div class="mockup-tab">2 진단 결과</div>
-                    <div class="mockup-tab">3 대본 생성</div>
-                    <div class="mockup-tab">4 보고서</div>
-                    <div class="mockup-tab">5 대본 리라이트</div>
-                </div>
-                <div class="mockup-body">
-                    <div class="mockup-row"><span class="label">현재 구독자</span><span class="value">11,253</span></div>
-                    <div class="mockup-row"><span class="label">최근 28일 구독 증가</span><span class="value">+133</span></div>
-                    <div class="mockup-row"><span class="label">데이터 연동 방식</span><span class="value">Apps Script 자동 연동</span></div>
-                    <div class="mockup-row"><span class="label">분석 엔진</span><span class="value">Claude / Gemini API</span></div>
-                    <span class="mockup-badge">● 직접 개발 · 실 채널 운영 적용 중</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 하단 푸터 영역 -->
-        <footer>
-            <p>&copy; 2026 ACUT MEDIA. All rights reserved.</p>
-        </footer>
-
+<header class="hero" id="top">
+  <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="../img/hero_poster.jpg" src="../videos/showreel_loop.mp4"></video>
+  <div class="wrap">
+    <p class="eb"><i></i>브랜드 영상 · 유튜브 채널 영상감독</p>
+    <h1 id="heroTitle">보이는 영상을 만들고,<br><em>왜 안 보이는지</em>까지 찾습니다</h1>
+    <div class="cta">
+      <button class="btn primary" data-yt="XfBlQdKH7Bk">▶ 쇼릴 2:54</button>
+      <a class="btn" href="#contact">문의하기</a>
     </div>
+    <div class="proof" id="stats"></div>
+  </div>
+</header>
 
-    <!-- 극장식 팝업 플레이어 모달 프레임 -->
-    <div class="modal" id="videoModal">
-        <div class="modal-content">
-            <span class="modal-close" id="modalClose">&times;</span>
-            <div class="video-container">
-                <iframe id="modalIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
+<section id="pain">
+  <div class="wrap">
+    <div class="head"><div><div class="k">PROBLEM</div><h2>이런 말, 하고 계신가요</h2></div></div>
+    <div class="pain">
+      <div><q>조회수가 1년째 그대로예요</q><b>왜 안 보이는지 숫자로 찾습니다</b><strong class="num">1.7천 → 6.5만<small>원인 고친 뒤 · 계속 오르는 중</small></strong></div>
+      <div><q>편집자는 있는데 뭘 찍을지 모르겠어요</q><b>편집자는 그대로, 기획만 맡기세요</b><strong>기획·진단만<small>다음 편 주제 · 구성</small></strong></div>
+      <div><q>런칭 영상 한 편이 중요해요</q><b>기획부터 발행까지 한 사람이</b><strong>1인 전담<small>포르쉐 · BYD · 카니발 3년</small></strong></div>
     </div>
+  </div>
+</section>
 
-    <script>
-        function changeCategory(category) {
-            const cards = document.querySelectorAll('.project-card');
-            const btns = document.querySelectorAll('.filter-btn');
+<section id="work" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="k">WORK</div><h2>7년, 현장이 네 번 바뀌었습니다</h2></div>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="strip">
+      <figure><video src="../videos/clips/estate.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>공간·부동산</figcaption></figure>
+      <figure><video src="../videos/clips/interview.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>인터뷰</figcaption></figure>
+      <figure><video src="../videos/clips/mobility.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>모빌리티</figcaption></figure>
+      <figure><video src="../videos/clips/brand.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>브랜드 필름</figcaption></figure>
+      <figure><video src="../videos/clips/event.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>기업 행사</figcaption></figure>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
 
-            btns.forEach(b => b.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+<section id="result">
+  <div class="wrap">
+    <div class="head"><div><div class="k">RESULT</div><h2>썸네일이 아니라<br><span class="acc">누구에게 닿는지</span>를 고쳤습니다</h2></div></div>
+    <div class="ba">
+      <figure><img src="../img/case1_before.webp" alt="고치기 전 영상 9편, 조회수 143~1,700" loading="lazy"><div class="over"><small>BEFORE</small><b class="num">143 ~ 1,700</b></div></figure>
+      <div class="arrow">→</div>
+      <figure class="after"><img src="../img/case1_after.webp" alt="고친 뒤 영상 2편, 조회수 4,400과 55,000" loading="lazy"><div class="over"><small>AFTER · 2주 5.5만 → 25일</small><b class="num">65,000</b></div></figure>
+    </div>
+    <div class="why">
+      <div class="x"><i>✕</i>썸네일 탓</div>
+      <div class="x"><i>✕</i>중간 이탈 탓</div>
+      <div class="o"><i>✓</i>구독 안 한 사람에게 안 닿음</div>
+    </div>
+    <div class="bars">
+      <div class="bar"><span>잘 될 때</span><i style="width:85%"></i><b class="num">85%</b></div>
+      <div class="bar"><span>떨어질 때</span><i style="width:46%"></i><b class="num">46%</b></div>
+      <div class="bar"><span>고친 뒤</span><i class="hot" style="width:97%"></i><b class="num">97%</b></div>
+    </div>
+    <div class="cap">시청자 중 구독 안 한 사람 비율 · 인테리어 채널 54편 전수 분석</div>
 
-            cards.forEach(c => {
-                const target = c.getAttribute('data-cat');
-                if (category === 'all' || target === category) {
-                    c.style.display = 'block';
-                } else {
-                    c.style.display = 'none';
-                }
-            });
-        }
+  </div>
+</section>
 
-        const modal = document.getElementById('videoModal');
-        const iframe = document.getElementById('modalIframe');
-        const closeBtn = document.getElementById('modalClose');
-        const cards = document.querySelectorAll('.project-card');
 
-        cards.forEach(c => {
-            c.addEventListener('click', () => {
-                const id = c.getAttribute('data-video');
-                if(id) {
-                    iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1&origin=*`;
-                    modal.style.display = 'flex';
-                }
-            });
-        });
+<section id="service" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="head"><div><div class="k">SERVICE</div><h2>필요한 만큼만 맡기세요</h2></div></div>
+    <div class="solo">
+      <div class="flowline">기획<em>→</em>대본<em>→</em>촬영<em>→</em>편집<em>→</em>썸네일<em>→</em>발행<span class="tag">1인 진행</span></div>
+      <div class="plus">
+        <div><b>정확한 피드백</b><span>근거와 함께 짚어 드립니다</span></div>
+        <div><b>빠른 발행</b><span>중간 전달 없이 바로 진행</span></div>
+      </div>
+    </div>
+    <div class="svc">
+      <div class="hot"><span class="ico">🔍</span><b>기획·진단만</b><span>편집자는 그대로 두고</span></div>
+      <div><span class="ico">📺</span><b>채널 운영</b><span>기획부터 발행 보고까지</span></div>
+      <div><span class="ico">🎬</span><b>영상 한 편</b><span>런칭·브랜드·행사</span></div>
+      <div><span class="ico">🤝</span><b>제작사 외주</b><span>촬영만 · 편집만</span></div>
+    </div>
+    <div class="steps">
+      <div><i>1</i>상담</div>
+      <div class="chk"><i>✓</i>기획</div>
+      <div class="chk"><i>✓</i>대본</div>
+      <div><i>4</i>촬영</div>
+      <div class="chk"><i>✓</i>편집</div>
+      <div><i>6</i>보고</div>
+    </div>
+    <div class="terms"><span>확인 3번</span><span>수정 1회</span><span>편당 약 2주</span><span>발행 10일 뒤 숫자 보고</span><span>세금계산서</span></div>
+  </div>
+</section>
 
-        function shutdownModal() {
-            modal.style.display = 'none';
-            iframe.src = '';
-        }
+<section id="person">
+  <div class="wrap person">
+    <img src="../img/profile.webp" alt="강명수" loading="lazy" width="300" height="300">
+    <div>
+      <div class="head" style="margin-bottom:0"><div><div class="k">DIRECTOR</div><h2>강명수</h2></div></div>
+      <div class="path">
+        <span>웨딩<small>2년 · 1인 3캠</small></span><em>→</em>
+        <span>부동산<small>2년</small></span><em>→</em>
+        <span>모빌리티<small>3년 · 포르쉐·BYD</small></span><em>→</em>
+        <span class="now">인테리어 채널<small>운영 중 · 롱폼 50편+</small></span>
+      </div>
+    </div>
+  </div>
+</section>
 
-        closeBtn.addEventListener('click', shutdownModal);
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) shutdownModal();
-        });
-    </script>
+<section id="contact" class="contact" style="background:var(--bg2)">
+  <div class="wrap">
+    <h2>채널 상황을 알려주세요.<br><span class="acc">숫자를 보고</span> 원인을 찾습니다.</h2>
+    <div class="flow">
+      <div><i>01</i>상담 · 채널 상황 듣기</div>
+      <div><i>02</i>스튜디오 데이터 분석</div>
+      <div><i>03</i>원인 · 범위 · 일정 제안</div>
+    </div>
+    <a class="tel-big num" href="tel:01040141547">010-4014-1547</a>
+    <div class="mail">kangms9254@naver.com · 경기 이천 · 수도권 출장</div>
+    <div class="cta">
+      <a class="btn primary" href="mailto:kangms9254@naver.com?subject=영상 문의&body=채널 링크: %0D%0A고민(조회수·구독 등): %0D%0A업종: %0D%0A원하는 것(진단만 / 한 편 / 월 운영): ">메일 보내기</a>
+      <a class="btn" href="tel:01040141547">전화하기</a>
+    </div>
+  </div>
+</section>
+<footer>© 2026 ACUT MEDIA · 강명수</footer>
+
+<div class="mbar" id="mbar"><a href="tel:01040141547">전화</a><a href="mailto:kangms9254@naver.com?subject=영상 문의">메일</a></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="영상 재생"><button class="x" id="modalX" aria-label="닫기">×</button><div class="box" id="modalBox"></div></div>
+
+<script src="../config.js"></script>
+<script>
+// 시트(관리자)가 있으면 시트, 없으면 아래 기본값
+const API = window.API || '';
+const FALLBACK = {
+  settings:{},
+  stats:[{value:'7년',label:'현장 촬영·편집'},{value:'54편',label:'채널 전수 분석'},{value:'1.7천→6.5만',label:'원인 찾은 뒤 조회수'}],
+  categories:{interior:'인테리어',mobility:'모빌리티',commercial:'기업·브랜드',personal:'웨딩·행사'},
+  videos:[
+    {cat:'interior',yt:'PLY3EbNQr8g',title:'2027 인테리어 트렌드',desc:'기획·대본·촬영·편집·썸네일',result:'6.5만 · 25일',feat:true},
+    {cat:'interior',yt:'zyrSIGUzRjY',title:'화장실 시공비 견적 전부 깝니다',desc:'기획·촬영·편집'},
+    {cat:'interior',yt:'3ZJrEiRb7tg',title:'디아망이 왜 비싼건데',desc:'기획·촬영·편집'},
+    {cat:'interior',yt:'5bH-t5GRTZo',title:'공간 다큐 · 시공 영상',desc:'촬영·편집·색보정'},
+    {cat:'interior',yt:'a2_kocP33Uk',title:'전원주택 건축 바이럴',desc:'촬영·편집'},
+    {cat:'mobility',yt:'mDZ7e9cTTtQ',title:'BYD ATTO3 리뷰',desc:'연출·촬영·편집'},
+    {cat:'mobility',yt:'cOnqi70i8ck',title:'신차 리뷰 트랙 연출',desc:'연출·촬영·편집'},
+    {cat:'mobility',yt:'_sWXknDVsug',title:'포르쉐 인증 중고차 광고',desc:'촬영·편집'},
+    {cat:'mobility',yt:'v3mSuJiY85U',title:'카니발 하이리무진 커머셜',desc:'연출·촬영·편집'},
+    {cat:'mobility',yt:'tFQmDqat3lI',title:'캠핑 브랜드 콘텐츠',desc:'촬영·편집'},
+    {cat:'commercial',yt:'0axRIYqYA9E',title:'특장 차량 런칭',desc:'기획·촬영·편집'},
+    {cat:'commercial',yt:'o6pAwbUzaPs',title:'기업 브랜딩 필름',desc:'기획·촬영·편집'},
+    {cat:'commercial',yt:'iQ3CQPwjCPk',title:'로스터리 카페 브랜딩',desc:'촬영·편집'},
+    {cat:'personal',yt:'H66wbpSgRKY',title:'웨딩 필름 · 1인 3캠',desc:'촬영·편집·색보정'},
+    {cat:'personal',yt:'92hYhnv743c',title:'본식 웨딩 · 1인 2캠',desc:'촬영·편집·색보정'},
+    {cat:'personal',yt:'MlqJGq6ghxY',title:'GOCAF 박람회 스케치',desc:'촬영·편집'},
+    {cat:'personal',yt:'eBeOc8rwFQs',title:'기업 페스티벌 스케치',desc:'촬영·편집'}
+  ]
+};
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function render(d){
+  if (d.settings?.heroTitle) $('#heroTitle').innerHTML = d.settings.heroTitle;
+  $('#stats').innerHTML = (d.stats||[]).slice(0,3).map(s=>`<div><b class="num">${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join('');
+  const cats = d.categories||{};
+  $('#filters').innerHTML = `<button class="on" data-cat="all">전체</button>` + Object.entries(cats).map(([k,v])=>`<button data-cat="${esc(k)}">${esc(v)}</button>`).join('');
+  $('#grid').innerHTML = (d.videos||[]).filter(v=>v.show!==false&&v.show!=='FALSE').map(v=>{
+    const id = esc(v.yt||'');
+    const img = v.thumb ? esc(v.thumb) : `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+    return `<div class="vcard${v.feat?' feat':''}" tabindex="0" role="button" aria-label="${esc(v.title)} 재생" data-cat="${esc(v.cat)}" data-yt="${id}" data-mp4="${esc(v.mp4||'')}">
+      <div class="thumb"><img src="${img}" alt="" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://img.youtube.com/vi/${id}/hqdefault.jpg'}">${v.result?`<span class="badge">${esc(v.result)}</span>`:''}<span class="play">▶</span></div>
+      <h3>${esc(v.title)}</h3><div class="role">${esc(v.desc||'')}</div></div>`;
+  }).join('');
+}
+$('#filters').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  $('#filters').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.vcard').forEach(c=>c.classList.toggle('hidden', b.dataset.cat!=='all' && c.dataset.cat!==b.dataset.cat));
+});
+
+// 모달
+let last;
+function openV(el){
+  const yt = el.dataset.yt, mp4 = el.dataset.mp4;
+  last = el;
+  $('#modalBox').innerHTML = mp4 ? `<video src="${esc(mp4)}" controls autoplay playsinline></video>`
+    : `<iframe src="https://www.youtube.com/embed/${encodeURIComponent(yt)}?autoplay=1&rel=0" title="영상" allow="autoplay; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+  $('#modal').classList.add('on'); $('#modalX').focus();
+}
+function closeV(){ $('#modal').classList.remove('on'); $('#modalBox').innerHTML=''; last?.focus(); }
+document.addEventListener('click', e => { const el = e.target.closest('[data-yt],[data-mp4]'); if (el && (el.dataset.yt||el.dataset.mp4) && !e.target.closest('#modal')) openV(el); });
+document.addEventListener('keydown', e => {
+  if (e.key==='Escape') closeV();
+  if ((e.key==='Enter'||e.key===' ') && e.target.classList?.contains('vcard')) { e.preventDefault(); openV(e.target); }
+});
+$('#modalX').onclick = closeV;
+$('#modal').onclick = e => { if (e.target.id==='modal') closeV(); };
+
+// 스크롤 시 nav 배경
+addEventListener('scroll', () => { $('#nav').classList.toggle('solid', scrollY > 60); $('#mbar').classList.toggle('on', scrollY > innerHeight*.8); }, {passive:true});
+
+render(FALLBACK);
+if (API) fetch(API).then(r=>r.json()).then(d=>render({...FALLBACK,...d,_fromSheet:true})).catch(()=>{});
+</script>
 </body>
 </html>
