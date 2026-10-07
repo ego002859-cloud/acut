@@ -65,6 +65,17 @@ section.tab{display:grid;gap:20px}
 .v .ops .btn{padding:5px 9px;font-size:12px}
 .v .edit{grid-column:1/-1;display:grid;gap:10px;padding-top:10px;border-top:1px solid var(--line)}
 .empty{color:var(--mut);font-size:13px;text-align:center;padding:30px}
+/* 배치 (사이트와 같은 3칸 격자, 끌어서 옮기기) */
+.lay{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:dense;gap:10px}
+.lay .c{position:relative;min-width:0;align-self:start;border-radius:10px;overflow:hidden;background:var(--bg3);border:1px solid var(--line);cursor:grab;user-select:none;-webkit-user-select:none}
+.lay .c.big{grid-column:span 2}
+.lay .c img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;pointer-events:none}
+.lay .c .t{font-size:12px;padding:6px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lay .c .bg{position:absolute;right:6px;top:6px;padding:4px 8px;border-radius:6px;background:rgba(0,0,0,.7);border:1px solid #ffffff40;font-size:11px;font-weight:700}
+.lay .c.big .bg{background:var(--acc);border-color:var(--acc)}
+.lay .sortable-ghost{opacity:.25}
+.lay .sortable-drag{transform:rotate(1.5deg);box-shadow:0 12px 30px rgba(0,0,0,.6)}
+.lay.busy{opacity:.6;pointer-events:none}
 /* 숫자 */
 .stat{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px}
 /* 토스트 */
@@ -81,6 +92,9 @@ section.tab{display:grid;gap:20px}
   .row2{grid-template-columns:minmax(0,1fr)}
   .stat{grid-template-columns:90px minmax(0,1fr)}
   .tabs button{padding:10px 10px;font-size:13px}
+  .lay{gap:6px}
+  .lay .c .bg{right:4px;top:4px;padding:2px 6px;font-size:10px}
+  .lay .c .t{font-size:11px;padding:4px 6px}
 }
 </style>
 </head>
@@ -109,6 +123,7 @@ section.tab{display:grid;gap:20px}
 <div id="app" class="wrap hidden">
   <div class="tabs">
     <button class="on" data-tab="videos">영상</button>
+    <button data-tab="layout">배치</button>
     <button data-tab="settings">설정</button>
     <button data-tab="stats">숫자</button>
   </div>
@@ -147,6 +162,15 @@ section.tab{display:grid;gap:20px}
     </div>
   </section>
 
+  <!-- 배치 -->
+  <section class="tab hidden" id="tab-layout">
+    <div class="card">
+      <h3>배치 <small>끌어서 옮기면 바로 저장 · 크게 = 2칸 · PC 화면 그대로 · 빈칸은 다음 영상이 알아서 채움</small></h3>
+      <div class="lay" id="lay"></div>
+      <p id="layNote" style="font-size:12px;color:var(--mut);margin-top:12px"></p>
+    </div>
+  </section>
+
   <!-- 설정 -->
   <section class="tab hidden" id="tab-settings">
     <div class="card">
@@ -166,6 +190,7 @@ section.tab{display:grid;gap:20px}
 
 <div id="toast"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.7/Sortable.min.js"></script>
 <script src="config.js"></script>
 <script>
 const API = window.API || '';
@@ -348,9 +373,38 @@ $('#statForm').onsubmit = e => {
   run(e.target.querySelector('[type=submit]'), 'setStats', body, '숫자 저장됨');
 };
 
+// ── 배치: 보이는 영상만 사이트와 같은 격자로, 끌어서 순서 변경 (숨긴 영상은 뒤로)
+let sortable;
+function renderLayout(){
+  const vs = data.videos.filter(shown), hid = data.videos.length - vs.length;
+  $('#lay').innerHTML = vs.map(v=>`<div class="c${big(v)?' big':''}" data-id="${esc(vid(v))}">
+    <img src="${esc(thumbOf(v))}" alt="">
+    <button class="bg" type="button">${big(v)?'작게':'크게'}</button>
+    <div class="t">${esc(v.title)}</div></div>`).join('');
+  $('#layNote').textContent = hid ? `숨긴 영상 ${hid}편은 여기 안 보입니다 (영상 탭에서 보이기)` : '';
+  $('#lay').classList.remove('busy');
+  if (sortable) sortable.destroy();
+  if (!window.Sortable) { $('#layNote').textContent = '끌기 기능을 불러오지 못했습니다. 영상 탭의 ↑↓ 로 옮기세요.'; return; }
+  sortable = Sortable.create($('#lay'), {
+    animation: 150, forceFallback: true, fallbackTolerance: 4, delay: 150, delayOnTouchOnly: true, filter: '.bg', preventOnFilter: false,
+    onEnd: async e => {
+      if (e.oldIndex === e.newIndex) return;
+      $('#lay').classList.add('busy');
+      const ids = [...$('#lay').children].map(c=>c.dataset.id), rest = data.videos.filter(v=>!shown(v)).map(vid);
+      if (!await run(null, 'reorder', { ids: [...ids, ...rest] }, '배치 저장됨')) renderLayout(); // 실패하면 원래대로
+    }
+  });
+}
+$('#lay').onclick = e => {
+  const b = e.target.closest('.bg'); if (!b) return;
+  const id = b.closest('.c').dataset.id, v = data.videos.find(x=>vid(x)===id); if (!v) return;
+  $('#lay').classList.add('busy');
+  run(null, 'upsert', { id, feat: !big(v) }, big(v)?'작게':'크게').then(ok => { if (!ok) renderLayout(); });
+};
+
 function renderAll(){
   $('#aCat').innerHTML = catOptions($('#aCat').value);
-  renderList(); renderSettings(); renderStats();
+  renderList(); renderLayout(); renderSettings(); renderStats();
 }
 </script>
 </body>
