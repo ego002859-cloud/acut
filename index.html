@@ -35,7 +35,7 @@ nav .tel{font-size:.86rem;font-weight:700;padding:9px 16px;border-radius:999px;b
 @media(max-width:720px){nav .links{display:none}nav{padding:12px 16px}}
 
 /* hero */
-.hero{position:relative;height:min(100svh,900px);min-height:560px;display:flex;align-items:flex-end;overflow:hidden;background:#000 url(../img/hero_poster.jpg) center/cover}
+.hero{position:relative;height:min(100svh,900px);min-height:560px;display:flex;align-items:flex-end;overflow:hidden;background:#000 url(img/hero_poster.jpg) center/cover}
 .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,12,1) 0%,rgba(11,11,12,.55) 35%,rgba(11,11,12,0) 70%)}
 .hero .wrap{position:relative;z-index:2;padding-bottom:clamp(36px,7vh,80px)}
@@ -78,7 +78,7 @@ section{padding:clamp(72px,10vw,130px) 0}
 .filters{display:flex;gap:6px;flex-wrap:wrap}
 .filters button{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mut);font:inherit;font-size:.86rem;font-weight:600;cursor:pointer}
 .filters button.on{background:var(--txt);color:#000;border-color:var(--txt)}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 16px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:dense;gap:22px 16px}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.grid{grid-template-columns:minmax(0,1fr)}}
 .vcard{cursor:pointer;min-width:0}
@@ -192,12 +192,12 @@ footer{padding:30px 0 40px;text-align:center;font-size:.76rem;color:#6b6b72}
 </nav>
 
 <header class="hero" id="top">
-  <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="../img/hero_poster.jpg" src="../videos/showreel_loop.mp4"></video>
+  <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="img/hero_poster.jpg" src="videos/showreel_loop.mp4"></video>
   <div class="wrap">
-    <p class="eb"><i></i>브랜드 영상 · 유튜브 채널 영상감독</p>
+    <p class="eb"><i></i><span id="heroEb">브랜드 영상 · 유튜브 채널 영상감독</span></p>
     <h1 id="heroTitle">보이는 영상을 만들고,<br><em>왜 안 보이는지</em>까지 찾습니다</h1>
     <div class="cta">
-      <button class="btn primary" data-yt="XfBlQdKH7Bk">▶ 쇼릴 2:54</button>
+      <button class="btn primary" id="reelBtn" data-yt="XfBlQdKH7Bk">▶ 쇼릴 2:54</button>
       <a class="btn" href="#contact">문의하기</a>
     </div>
     <div class="proof" id="stats"></div>
@@ -222,11 +222,11 @@ footer{padding:30px 0 40px;text-align:center;font-size:.76rem;color:#6b6b72}
       <div class="filters" id="filters"></div>
     </div>
     <div class="strip">
-      <figure><video src="../videos/clips/estate.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>공간·부동산</figcaption></figure>
-      <figure><video src="../videos/clips/interview.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>인터뷰</figcaption></figure>
-      <figure><video src="../videos/clips/mobility.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>모빌리티</figcaption></figure>
-      <figure><video src="../videos/clips/brand.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>브랜드 필름</figcaption></figure>
-      <figure><video src="../videos/clips/event.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>기업 행사</figcaption></figure>
+      <figure><video src="videos/clips/estate.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>공간·부동산</figcaption></figure>
+      <figure><video src="videos/clips/interview.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>인터뷰</figcaption></figure>
+      <figure><video src="videos/clips/mobility.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>모빌리티</figcaption></figure>
+      <figure><video src="videos/clips/brand.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>브랜드 필름</figcaption></figure>
+      <figure><video src="videos/clips/event.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>기업 행사</figcaption></figure>
     </div>
     <div class="grid" id="grid"></div>
   </div>
@@ -236,9 +236,9 @@ footer{padding:30px 0 40px;text-align:center;font-size:.76rem;color:#6b6b72}
   <div class="wrap">
     <div class="head"><div><div class="k">RESULT</div><h2>썸네일이 아니라<br><span class="acc">누구에게 닿는지</span>를 고쳤습니다</h2></div></div>
     <div class="ba">
-      <figure><img src="../img/case1_before.webp" alt="고치기 전 영상 9편, 조회수 143~1,700" loading="lazy"><div class="over"><small>BEFORE</small><b class="num">143 ~ 1,700</b></div></figure>
+      <figure><img src="img/case1_before.webp" alt="고치기 전 영상 9편, 조회수 143~1,700" loading="lazy"><div class="over"><small>BEFORE</small><b class="num">143 ~ 1,700</b></div></figure>
       <div class="arrow">→</div>
-      <figure class="after"><img src="../img/case1_after.webp" alt="고친 뒤 영상 2편, 조회수 4,400과 55,000" loading="lazy"><div class="over"><small>AFTER · 2주 5.5만 → 25일</small><b class="num">65,000</b></div></figure>
+      <figure class="after"><img src="img/case1_after.webp" alt="고친 뒤 영상 2편, 조회수 4,400과 55,000" loading="lazy"><div class="over"><small>AFTER · 2주 5.5만 → 25일</small><b class="num">65,000</b></div></figure>
     </div>
     <div class="why">
       <div class="x"><i>✕</i>썸네일 탓</div>
@@ -286,7 +286,7 @@ footer{padding:30px 0 40px;text-align:center;font-size:.76rem;color:#6b6b72}
 
 <section id="person">
   <div class="wrap person">
-    <img src="../img/profile.webp" alt="강명수" loading="lazy" width="300" height="300">
+    <img src="img/profile.webp" alt="강명수" loading="lazy" width="300" height="300">
     <div>
       <div class="head" style="margin-bottom:0"><div><div class="k">DIRECTOR</div><h2>강명수</h2></div></div>
       <div class="path">
@@ -321,7 +321,7 @@ footer{padding:30px 0 40px;text-align:center;font-size:.76rem;color:#6b6b72}
 
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="영상 재생"><button class="x" id="modalX" aria-label="닫기">×</button><div class="box" id="modalBox"></div></div>
 
-<script src="../config.js"></script>
+<script src="config.js"></script>
 <script>
 // 시트(관리자)가 있으면 시트, 없으면 아래 기본값
 const API = window.API || '';
@@ -352,15 +352,24 @@ const FALLBACK = {
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
+// 시트 체크박스는 true/false, 손으로 쓴 칸은 'TRUE'/'FALSE' 문자열
+const yes = x => x === true || x === 'TRUE' || x === 'true';
+const no = x => x === false || x === 'FALSE' || x === 'false';
+// 제목: 줄바꿈 그대로, [대괄호] = 핑크 강조
+const fmt = t => esc(t).replace(/\n/g, '<br>').replace(/\[(.+?)\]/g, '<em>$1</em>');
+
 function render(d){
-  if (d.settings?.heroTitle) $('#heroTitle').innerHTML = d.settings.heroTitle;
+  const st = d.settings || {};
+  if (st.heroTitle) $('#heroTitle').innerHTML = fmt(st.heroTitle);
+  if (st.heroEyebrow) $('#heroEb').textContent = st.heroEyebrow;
+  if (st.showreel_youtube) $('#reelBtn').dataset.yt = st.showreel_youtube;
   $('#stats').innerHTML = (d.stats||[]).slice(0,3).map(s=>`<div><b class="num">${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join('');
   const cats = d.categories||{};
   $('#filters').innerHTML = `<button class="on" data-cat="all">전체</button>` + Object.entries(cats).map(([k,v])=>`<button data-cat="${esc(k)}">${esc(v)}</button>`).join('');
-  $('#grid').innerHTML = (d.videos||[]).filter(v=>v.show!==false&&v.show!=='FALSE').map(v=>{
+  $('#grid').innerHTML = (d.videos||[]).filter(v=>!no(v.show)).map(v=>{
     const id = esc(v.yt||'');
     const img = v.thumb ? esc(v.thumb) : `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
-    return `<div class="vcard${v.feat?' feat':''}" tabindex="0" role="button" aria-label="${esc(v.title)} 재생" data-cat="${esc(v.cat)}" data-yt="${id}" data-mp4="${esc(v.mp4||'')}">
+    return `<div class="vcard${yes(v.feat)?' feat':''}" tabindex="0" role="button" aria-label="${esc(v.title)} 재생" data-cat="${esc(v.cat)}" data-yt="${id}" data-mp4="${esc(v.mp4||'')}">
       <div class="thumb"><img src="${img}" alt="" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://img.youtube.com/vi/${id}/hqdefault.jpg'}">${v.result?`<span class="badge">${esc(v.result)}</span>`:''}<span class="play">▶</span></div>
       <h3>${esc(v.title)}</h3><div class="role">${esc(v.desc||'')}</div></div>`;
   }).join('');
