@@ -81,6 +81,12 @@ section.tab{display:grid;gap:20px}
 .vk div{background:var(--bg3);border-radius:10px;padding:14px}
 .vk b{display:block;font-size:26px;font-weight:800;color:var(--acc);line-height:1.15}
 .vk span{font-size:12px;color:var(--mut)}
+.vday{display:grid;grid-template-columns:repeat(30,minmax(0,1fr));gap:3px;align-items:end;height:132px;margin:2px 0 14px}
+.vday div{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;min-width:0;height:100%}
+.vday b{font-size:10px;font-weight:700;line-height:1}
+.vday i{display:block;width:100%;min-height:2px;background:var(--line);border-radius:3px 3px 0 0}
+.vday i.on{background:var(--acc)}
+.vday span{font-size:9px;color:var(--mut);height:11px;white-space:nowrap}
 .vt .re{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:6px;background:var(--acc);color:#fff;font-size:10px;font-weight:700}
 .vt td.w{white-space:normal;min-width:160px}
 .hb{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 30px;gap:8px;align-items:center;font-size:12px;margin-bottom:7px}
@@ -192,6 +198,7 @@ section.tab{display:grid;gap:20px}
     <div class="card">
       <h3>방문 <small>최근 30일 · 바깥 사람만</small></h3>
       <div class="vk" id="vKpi"></div>
+      <div class="vday" id="vDay"></div>
       <label style="display:flex;gap:8px;align-items:center;font-size:13px;color:var(--txt);margin:0"><input type="checkbox" id="ownerChk" style="width:auto"> 이 기기에서 연 포트폴리오는 방문으로 세지 않기</label>
     </div>
     <div class="card">
@@ -458,6 +465,10 @@ function renderVisits(raw){
   const vs = all.filter(v => now - v.t < 30*DAY), people = a => new Set(a.map(v=>v.id)).size;
   $('#vKpi').innerHTML = [[people(vs), '본 사람'], [people(vs.filter(v => first[v.id] < v.t - DAY/2)), '다시 온 사람'], [vs.filter(v=>v.call.length).length, '전화·메일 누른 방문']]
     .map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
+  // 일자별: 그날 본 사람 수 (30일)
+  const days = [...Array(30)].map((_,i) => { const d = new Date(now - (29-i)*DAY); d.setHours(0,0,0,0); return d.getTime(); });
+  const per = days.map(d => vs.filter(v => v.t >= d && v.t < d + DAY).length), mx = Math.max(1, ...per);
+  $('#vDay').innerHTML = per.map((n,i) => { const d = new Date(days[i]); return `<div title="${d.getMonth()+1}/${d.getDate()} · ${n}명"><b>${n || ''}</b><i class="${n ? 'on' : ''}" style="height:${Math.round(n/mx*92)}px"></i><span>${i%5===4 ? (d.getMonth()+1)+'/'+d.getDate() : ''}</span></div>`; }).join('');
   const title = k => (data.videos.find(x=>vid(x)===k)||{}).title || k;
   const when = t => { const d = new Date(t); return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; };
   const dur = s => !s ? '–' : s < 60 ? s + '초' : Math.floor(s/60) + '분 ' + (s%60) + '초';
