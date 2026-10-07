@@ -384,6 +384,7 @@ $('#filters').addEventListener('click', e => {
 let last;
 function openV(el){
   const yt = el.dataset.yt, mp4 = el.dataset.mp4;
+  track('play', yt || mp4);
   last = el;
   $('#modalBox').innerHTML = mp4 ? `<video src="${esc(mp4)}" controls autoplay playsinline></video>`
     : `<iframe src="https://www.youtube.com/embed/${encodeURIComponent(yt)}?autoplay=1&rel=0" title="영상" allow="autoplay; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
@@ -400,6 +401,23 @@ $('#modal').onclick = e => { if (e.target.id==='modal') closeV(); };
 
 // 스크롤 시 nav 배경
 addEventListener('scroll', () => { $('#nav').classList.toggle('solid', scrollY > 60); $('#mbar').classList.toggle('on', scrollY > innerHeight*.8); }, {passive:true});
+
+// 방문 기록: 바깥 방문만 (관리자 로그인 기기·?me 로 연 기기·내 컴퓨터 미리보기는 제외). 들어오는 길은 잡코리아 하나라 경로는 안 나눔
+const T0 = Date.now();
+try { if (new URLSearchParams(location.search).has('me')) localStorage.setItem('acut_owner', '1'); } catch (_) {}
+function track(ev, target = ''){
+  try {
+    if (!API || location.protocol === 'file:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname) || localStorage.getItem('acut_owner') === '1') return;
+    let vid = localStorage.getItem('acut_vid');
+    if (!vid) { vid = Math.random().toString(36).slice(2, 12); localStorage.setItem('acut_vid', vid); }
+    const device = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? '모바일' : 'PC';
+    navigator.sendBeacon(API, JSON.stringify({ action: 'hit', data: { vid, ev, target, device } }));
+  } catch (_) {}
+}
+track('view');
+addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') track('leave', String(Math.round((Date.now() - T0) / 1000))); }); // 머문 시간(초)
+document.addEventListener('click', e => { const a = e.target.closest('a[href^="tel:"],a[href^="mailto:"]'); if (a) track('contact', a.href.startsWith('tel:') ? '전화' : '메일'); });
+new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { track('end'); o.disconnect(); } }).observe($('#contact'));
 
 render(FALLBACK);
 if (API) fetch(API).then(r=>r.json()).then(d=>render({...FALLBACK,...d,_fromSheet:true})).catch(()=>{});

@@ -76,6 +76,21 @@ section.tab{display:grid;gap:20px}
 .lay .sortable-ghost{opacity:.25}
 .lay .sortable-drag{transform:rotate(1.5deg);box-shadow:0 12px 30px rgba(0,0,0,.6)}
 .lay.busy{opacity:.6;pointer-events:none}
+/* 방문 */
+.vk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:18px}
+.vk div{background:var(--bg3);border-radius:10px;padding:14px}
+.vk b{display:block;font-size:26px;font-weight:800;color:var(--acc);line-height:1.15}
+.vk span{font-size:12px;color:var(--mut)}
+.vt .re{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:6px;background:var(--acc);color:#fff;font-size:10px;font-weight:700}
+.vt td.w{white-space:normal;min-width:160px}
+.hb{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 30px;gap:8px;align-items:center;font-size:12px;margin-bottom:7px}
+.hb span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb i{display:block;height:8px;border-radius:4px;background:var(--acc)}
+.hb b{text-align:right}
+.vtw{overflow-x:auto;margin-top:12px}
+.vt{width:100%;border-collapse:collapse;font-size:12px}
+.vt th,.vt td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+.vt th{color:var(--mut);font-weight:600}
 /* 숫자 */
 .stat{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px}
 /* 토스트 */
@@ -124,6 +139,7 @@ section.tab{display:grid;gap:20px}
   <div class="tabs">
     <button class="on" data-tab="videos">영상</button>
     <button data-tab="layout">배치</button>
+    <button data-tab="visits">방문</button>
     <button data-tab="settings">설정</button>
     <button data-tab="stats">숫자</button>
   </div>
@@ -169,6 +185,20 @@ section.tab{display:grid;gap:20px}
       <div class="lay" id="lay"></div>
       <p id="layNote" style="font-size:12px;color:var(--mut);margin-top:12px"></p>
     </div>
+  </section>
+
+  <!-- 방문 -->
+  <section class="tab hidden" id="tab-visits">
+    <div class="card">
+      <h3>방문 <small>최근 30일 · 바깥 사람만</small></h3>
+      <div class="vk" id="vKpi"></div>
+      <label style="display:flex;gap:8px;align-items:center;font-size:13px;color:var(--txt);margin:0"><input type="checkbox" id="ownerChk" style="width:auto"> 이 기기에서 연 포트폴리오는 방문으로 세지 않기</label>
+    </div>
+    <div class="card">
+      <h3>방문 기록 <small>한 줄 = 한 사람의 하루 · 최근 순 · 재방문은 관심 신호</small></h3>
+      <div class="vtw" id="vLog"></div>
+    </div>
+    <div class="card"><h3>많이 본 영상 <small>30일</small></h3><div id="vTop"></div></div>
   </section>
 
   <!-- 설정 -->
@@ -247,7 +277,7 @@ $('#loginForm').onsubmit = async e => {
   b.disabled = false; b.textContent = '연결 확인';
 };
 if (API && token) { $('#pw').value = token; $('#loginForm').requestSubmit(); }
-function enter(){ $('#login').classList.add('hidden'); $('#app').classList.remove('hidden'); $('#logout').classList.remove('hidden'); renderAll(); }
+function enter(){ setOwner(true); $('#login').classList.add('hidden'); $('#app').classList.remove('hidden'); $('#logout').classList.remove('hidden'); renderAll(); }
 $('#logout').onclick = () => { try{ localStorage.removeItem('admin_token'); }catch(_){} location.reload(); };
 
 // ── 탭
@@ -255,6 +285,7 @@ $('.tabs').onclick = e => {
   const b = e.target.closest('button'); if(!b) return;
   document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
   document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('hidden', s.id!=='tab-'+b.dataset.tab));
+  if (b.dataset.tab === 'visits') loadVisits();
 };
 
 // ── 영상 추가
@@ -401,6 +432,43 @@ $('#lay').onclick = e => {
   $('#lay').classList.add('busy');
   run(null, 'upsert', { id, feat: !big(v) }, big(v)?'작게':'크게').then(ok => { if (!ok) renderLayout(); });
 };
+
+// ── 방문: 탭 열 때 불러옴. 관리자에 로그인한 기기는 포트폴리오 방문으로 안 셈(acut_owner)
+const setOwner = on => { try { on ? localStorage.setItem('acut_owner','1') : localStorage.removeItem('acut_owner'); } catch(_){} };
+$('#ownerChk').onchange = e => { setOwner(e.target.checked); toast(e.target.checked ? '이 기기는 세지 않습니다' : '이 기기도 셉니다','ok'); };
+async function loadVisits(){
+  try { $('#ownerChk').checked = localStorage.getItem('acut_owner') === '1'; } catch(_){}
+  $('#vKpi').innerHTML = '<div><b>…</b><span>불러오는 중</span></div>';
+  try { renderVisits((await post('visits', {})).data || []); }
+  catch(e){ $('#vKpi').innerHTML = `<div><b>!</b><span>${esc(e.message)}</span></div>`; }
+}
+function renderVisits(raw){
+  const DAY = 864e5, now = Date.now();
+  const rows = raw.map(([t,id,ev,target,,,device]) => ({ t: new Date(t).getTime(), id, ev, target: String(target), device })); // 시트 열: time·vid·ev·target·ref·tag·device (ref·tag 는 안 씀)
+  // 한 사람(기기)의 하루 = 방문 한 줄
+  const groups = rows.reduce((m,r) => ((m[r.id + '|' + new Date(r.t).toDateString()] ||= []).push(r), m), {});
+  const all = Object.values(groups).map(a => {
+    const v = a.find(r=>r.ev==='view') || a[0];
+    return { t: Math.min(...a.map(r=>r.t)), id: v.id, device: v.device,
+      sec: Math.max(0, ...a.filter(r=>r.ev==='leave').map(r=>+r.target||0)),
+      plays: [...new Set(a.filter(r=>r.ev==='play').map(r=>r.target))], end: a.some(r=>r.ev==='end'),
+      call: [...new Set(a.filter(r=>r.ev==='contact').map(r=>r.target))] };
+  }).sort((a,b)=>b.t-a.t);
+  const first = {}; [...all].reverse().forEach(v => { first[v.id] ??= v.t; });
+  const vs = all.filter(v => now - v.t < 30*DAY), people = a => new Set(a.map(v=>v.id)).size;
+  $('#vKpi').innerHTML = [[people(vs), '본 사람'], [people(vs.filter(v => first[v.id] < v.t - DAY/2)), '다시 온 사람'], [vs.filter(v=>v.call.length).length, '전화·메일 누른 방문']]
+    .map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
+  const title = k => (data.videos.find(x=>vid(x)===k)||{}).title || k;
+  const when = t => { const d = new Date(t); return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; };
+  const dur = s => !s ? '–' : s < 60 ? s + '초' : Math.floor(s/60) + '분 ' + (s%60) + '초';
+  $('#vLog').innerHTML = vs.length ? `<table class="vt"><tr><th>언제</th><th>기기</th><th>머문 시간</th><th>본 영상</th><th>끝까지</th><th>연락</th></tr>${vs.slice(0,50).map(v=>`<tr>
+    <td>${when(v.t)}${first[v.id] < v.t - DAY/2 ? '<span class="re">재방문</span>' : ''}</td>
+    <td>${esc(v.device)}</td><td>${dur(v.sec)}</td>
+    <td class="w">${v.plays.length ? esc(v.plays.map(title).join(', ')) : '–'}</td>
+    <td>${v.end ? '✓' : ''}</td><td>${esc(v.call.join('·'))}</td></tr>`).join('')}</table>` : '<div class="empty">아직 바깥 방문이 없습니다</div>';
+  const top = Object.entries(vs.flatMap(v=>v.plays).reduce((m,k)=>(m[k]=(m[k]||0)+1, m), {})).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  $('#vTop').innerHTML = top.length ? top.map(([k,n])=>`<div class="hb"><span>${esc(title(k))}</span><i style="width:${n/top[0][1]*100}%"></i><b>${n}</b></div>`).join('') : '<div class="empty">아직 없음</div>';
+}
 
 function renderAll(){
   $('#aCat').innerHTML = catOptions($('#aCat').value);
