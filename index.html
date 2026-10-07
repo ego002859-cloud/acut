@@ -41,8 +41,9 @@ nav .tel{font-size:.86rem;font-weight:700;padding:9px 16px;border-radius:999px;b
 .hero .wrap{position:relative;z-index:2;padding-bottom:clamp(36px,7vh,80px)}
 .hero .eb{display:flex;align-items:center;gap:10px;margin-bottom:18px;font-size:.78rem;font-weight:700;letter-spacing:.14em;color:#e6e6ea}
 .hero .eb i{width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px #ff336640}
-.hero h1{font-size:clamp(2.1rem,6vw,5rem);font-weight:800;line-height:1.08;letter-spacing:-.045em;text-wrap:balance}
+.hero h1{white-space:nowrap;font-size:clamp(.9rem,6vw,3.6rem);font-weight:800;line-height:1.08;letter-spacing:-.045em;text-wrap:balance}
 .hero h1 em{font-style:normal;color:var(--acc)}
+.hero .essence2{margin-top:16px;font-size:clamp(.72rem,1.5vw,1.05rem);color:rgba(255,255,255,.75)}
 .cta{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:700;font-size:.95rem;border:1px solid #ffffff40;background:#ffffff14;backdrop-filter:blur(8px);cursor:pointer;color:var(--txt)}
 .btn.primary{background:var(--acc);border-color:var(--acc);color:#fff}
@@ -195,7 +196,8 @@ footer{padding:30px 0 40px;text-align:center;font-size:.76rem;color:#6b6b72}
   <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="img/hero_poster.jpg" src="videos/showreel_loop.mp4"></video>
   <div class="wrap">
     <p class="eb"><i></i><span id="heroEb">브랜드 영상 · 유튜브 채널 영상감독</span></p>
-    <h1 id="heroTitle">보이는 영상을 만들고,<br><em>왜 안 보이는지</em>까지 찾습니다</h1>
+    <h1 id="heroTitle">기술은 빠르게 바뀌어 가지만,<br>영상의 본질은 기술이 아닌 <em>설득하는 것</em></h1>
+    <p class="essence2" id="heroSub" hidden></p>
     <div class="cta">
       <button class="btn primary" id="reelBtn" data-yt="XfBlQdKH7Bk">▶ 쇼릴 2:54</button>
       <a class="btn" href="#contact">문의하기</a>
@@ -361,6 +363,7 @@ const fmt = t => esc(t).replace(/\n/g, '<br>').replace(/\[(.+?)\]/g, '<em>$1</em
 function render(d){
   const st = d.settings || {};
   if (st.heroTitle) $('#heroTitle').innerHTML = fmt(st.heroTitle);
+  if (st.heroSub) { $('#heroSub').textContent = st.heroSub; $('#heroSub').hidden = false; }
   if (st.heroEyebrow) $('#heroEb').textContent = st.heroEyebrow;
   if (st.showreel_youtube) $('#reelBtn').dataset.yt = st.showreel_youtube;
   $('#stats').innerHTML = (d.stats||[]).slice(0,3).map(s=>`<div><b class="num">${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join('');
